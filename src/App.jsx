@@ -17,6 +17,9 @@ export default function App() {
     case "instructions":
       return <InstructionsPage 
         difficulty={difficulty}
+        setPage={setPage}
       />
+      case "quiz":
+      return <>test</>
   }
 }

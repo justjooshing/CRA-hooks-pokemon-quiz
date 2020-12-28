@@ -1,0 +1,46 @@
+.instructions_continue_button_loaded {
+  align-self: center;
+  color: #fff;
+  background-color: var(--poke-dark-red);
+  padding: 1em;
+  margin: 1em 2em;
+  cursor: pointer;
+}
+
+.instructions_continue_button_loading {
+  display: flex;
+  place-items: center;
+  align-self: center;
+  color: #fff;
+  background-color: #666;
+  padding: 1em;
+  margin: 1em 2em;
+  cursor: pointer;
+}
+
+.instructions_continue_button_text_loaded {
+  padding-bottom: 5px;
+  font-family: var(--main-text-font);
+  font-weight: lighter;
+  animation: blink 1.5s infinite;
+}
+
+.instructions_continue_button_text_loading {
+  font-family: var(--main-text-font);
+  font-weight: lighter;
+}
+
+.instructions_pokeball {
+  height: 40px;
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  10% {
+    transform: rotate(-10deg);
+  }
+
+  15% {
+    transform: rotate(0deg);
+  }
+}

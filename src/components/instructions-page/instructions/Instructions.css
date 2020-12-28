@@ -1,0 +1,13 @@
+.instructions_wrapper {
+  background-color: var(--poke-blue);
+  margin: 0em 1em 1em;
+  padding: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+.instructions_lines {
+  padding: 1em;
+  font-family: var(--secondary-text-font);
+  font-size: 17px;
+}
