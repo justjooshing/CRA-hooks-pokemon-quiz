@@ -19,7 +19,11 @@ export default function App() {
       return <>
       <Heading />
       <Subheading />
-      <Modes setDifficulty={setDifficulty} />
+      <Modes 
+      setDifficulty={setDifficulty} 
+      setPage={setPage}/>
       </>;
+    case "instructions":
+      return <>test</>
   }
 }
