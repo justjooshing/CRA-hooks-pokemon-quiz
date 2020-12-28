@@ -1,3 +1,22 @@
 .App {
   text-align: center;
 }
+
+body {
+  margin: 0;
+  font-family: var(--secondary-text-font), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background-color: var(--poke-yellow);
+  font-family: var(--secondary-text-font);
+  width: 100%;
+  max-width: 425px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}

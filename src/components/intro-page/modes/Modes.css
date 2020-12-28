@@ -1,0 +1,34 @@
+.modes_wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modes_options {
+  margin: 1em 2em;
+  background-color: var(--poke-dark-red);
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mode_heading {
+  padding-bottom: 5px;
+  font-family: var(--main-text-font);
+  font-weight: lighter;
+  animation: blink 1.5s infinite;
+}
+
+.mode_subheading {
+  font-family: var(--secondary-text-font);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

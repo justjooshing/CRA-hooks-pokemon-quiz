@@ -1,0 +1,6 @@
+.subheading_text {
+  margin: 1em 2em;
+  line-height: 2em;
+  text-align: center;
+  font-family: var(--main-text-font);
+}

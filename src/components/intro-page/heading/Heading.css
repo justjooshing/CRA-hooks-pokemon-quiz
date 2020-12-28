@@ -1,0 +1,18 @@
+.heading_wrapper {
+  background-color: var(--poke-blue);
+  padding: 2em 0em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+.heading_title_images {
+  max-width: 221px;
+  width: 52vw;
+}
+
+.heading_title_quiz {
+  max-width: 110.5px;
+  width: 26vw;
+}
