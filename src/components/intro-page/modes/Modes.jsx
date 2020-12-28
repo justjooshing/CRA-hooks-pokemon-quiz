@@ -2,7 +2,7 @@ import React from 'react'
 
 import ModeButton from "./ModeButton"
 
-export default function Modes() {
+export default function Modes({setDifficulty}) {
 
   const modes = [
     {
@@ -20,7 +20,7 @@ export default function Modes() {
       {Object.values(modes).map((mode, index) => (
         <ModeButton
           key={index}
-          // selectMode={selectMode}
+          setDifficulty={setDifficulty}
           difficulty={mode.difficulty}
           button_paragraph={mode.button_paragraph}
         />
