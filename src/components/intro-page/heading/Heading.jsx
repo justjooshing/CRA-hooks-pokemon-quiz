@@ -4,6 +4,8 @@ import headerTitleUltimate from "../../../images/heading_breakdown/Ultimate.png"
 import headerTitlePokemon from "../../../images/heading_breakdown/Pokemon.png"
 import headerTitleQuiz from "../../../images/heading_breakdown/Quiz.png"
 
+import "./Heading.css"
+
 
 export default function Heading() {
   return (

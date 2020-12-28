@@ -1,3 +1,5 @@
+import "./Subheading.css"
+
 function Subheading() {
   return (
     <>

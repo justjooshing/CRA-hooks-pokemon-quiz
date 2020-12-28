@@ -2,7 +2,9 @@ import React from 'react'
 
 import ModeButton from "./ModeButton"
 
-export default function Modes({setDifficulty}) {
+import "./Modes.css"
+
+export default function Modes({setDifficulty, setPage}) {
 
   const modes = [
     {
@@ -21,6 +23,7 @@ export default function Modes({setDifficulty}) {
         <ModeButton
           key={index}
           setDifficulty={setDifficulty}
+          setPage={setPage}
           difficulty={mode.difficulty}
           button_paragraph={mode.button_paragraph}
         />
