@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import Heading from "./components/intro-page/heading/Heading";
-import Subheading from "./components/intro-page/subheading/Subheading"
-import Modes from "./components/intro-page/modes/Modes"
+import IntroPage from "./components/intro-page/IntroPage"
 
 import "./App.css";
 
@@ -16,14 +14,10 @@ export default function App() {
 
   switch (page) {
     default:
-      return <>
-      <Heading />
-      <Subheading />
-      <Modes 
+      return <IntroPage 
       setDifficulty={setDifficulty} 
       setPage={setPage}/>
-      </>;
     case "instructions":
-      return <>test</>
+      return <>{difficulty}</>
   }
 }
