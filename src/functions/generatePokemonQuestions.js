@@ -1,4 +1,4 @@
-const generateQuestions = async (setQuestions) => {
+const generateQuestions = async () => {
   const numberOfPokemon = 10;
   const questionSet = [];
 
@@ -44,7 +44,7 @@ const generateQuestions = async (setQuestions) => {
   }
 
   //Set state with new pokemon set now containing (n) pokemon
-  return setQuestions(questionSet);
+  return questionSet;
 };
 
 export default generateQuestions;

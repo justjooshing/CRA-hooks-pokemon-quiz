@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import IntroPage from "./components/intro-page/IntroPage";
 import InstructionsPage from "./components/instructions-page/InstructionsPage";
@@ -13,10 +13,6 @@ export default function App() {
   const resetDifficulty = () => {
     setDifficulty(null);
   };
-
-  useEffect(() => {
-    console.log(difficulty);
-  }, [difficulty]);
 
   switch (page) {
     case "instructions":

@@ -1,40 +1,57 @@
 import React, { useEffect, useState } from "react";
 import IndicatorsWrapper from "../indicators/IndicatorsWrapper";
+import PokemonImage from "./PokemonImage";
 
 import grabAllPokemon from "../../functions/grabAllPokemon";
-import pokemonTypes from "../pokemonTypes";
-import generateQuestions from "../../functions/generateQuestions";
+import generatePokemonQuestions from "../../functions/generatePokemonQuestions";
+import generateQuestionTypes from "../../functions/generateQuestionTypes";
 
 export default function Quiz({ difficulty, setPage, resetDifficulty }) {
-  // const [questionTopics, setTopics] = useState();
   const [pokemonNames, setPokemonNames] = useState();
-  const [questions, setQuestions] = useState();
+  const [pokemonQuestions, setPokemonQuestions] = useState();
+  const [questionTypes, setQuestionTypes] = useState();
+
+  const [round, setRound] = useState(0);
+
+  const allUpdated = pokemonNames && pokemonQuestions && questionTypes;
 
   useEffect(() => {
     if (!pokemonNames) {
       const setUpQuiz = async () => {
-        await grabAllPokemon(setPokemonNames);
-        await generateQuestions(setQuestions);
+        const names = await grabAllPokemon();
+        setPokemonNames(names);
+        const questions = await generatePokemonQuestions();
+        setPokemonQuestions(questions);
       };
       setUpQuiz();
     }
-  }, [pokemonNames]);
+  });
 
-  if (questions) {
+  useEffect(() => {
+    if (pokemonQuestions) {
+      const types = generateQuestionTypes(pokemonQuestions);
+      setQuestionTypes(types);
+    }
+  }, [pokemonQuestions]);
+
+  const logAll = () => {
+    // console.log(pokemonNames);
+    console.log(pokemonQuestions);
+    // console.log(questionTypes);
+  };
+
+  if (allUpdated) {
     return (
       <>
         <IndicatorsWrapper
           difficulty={difficulty}
           resetDifficulty={resetDifficulty}
           setPage={setPage}
+          round={round}
+          setRound={setRound}
         />
-        {Object.values(questions).map((pokemon, index) => {
-          return (
-            <>
-              <li key={index}>{pokemon.name}</li>
-            </>
-          );
-        })}
+        <PokemonImage pokemon={pokemonQuestions[round]} />
+        <button onClick={() => logAll()}>Click</button>
       </>
     );
   } else {

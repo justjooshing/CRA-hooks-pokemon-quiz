@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import ModeIndicator from "./ModeIndicator";
 
@@ -8,9 +8,9 @@ export default function IndicatorsWrapper({
   difficulty,
   resetDifficulty,
   setPage,
+  round,
+  setRound,
 }) {
-  const [round, setRound] = useState(0);
-
   const startOver = () => {
     resetDifficulty();
     setPage(null);
