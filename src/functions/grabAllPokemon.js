@@ -1,4 +1,4 @@
-export default async function grabAllPokemon() {
+export default async function grabAllPokemon(setPokemonNames) {
   const allPokemonFetch = await fetch(
     "https://pokeapi.co/api/v2/pokemon/?limit=151"
   );
@@ -19,5 +19,5 @@ export default async function grabAllPokemon() {
   });
 
   //set state with all 151 pokemon names array
-  return allPokemonNames;
+  return setPokemonNames(allPokemonNames);
 }

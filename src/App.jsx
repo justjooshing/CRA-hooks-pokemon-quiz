@@ -19,8 +19,6 @@ export default function App() {
   }, [difficulty]);
 
   switch (page) {
-    default:
-      return <IntroPage setDifficulty={setDifficulty} setPage={setPage} />;
     case "instructions":
       return <InstructionsPage difficulty={difficulty} setPage={setPage} />;
     case "quiz":
@@ -31,5 +29,7 @@ export default function App() {
           resetDifficulty={resetDifficulty}
         />
       );
+    default:
+      return <IntroPage setDifficulty={setDifficulty} setPage={setPage} />;
   }
 }
