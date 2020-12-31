@@ -70,7 +70,6 @@ export default function HardMode({
       onSubmit={(e) => e.preventDefault()}
     >
       {topic === "type" && <TypeDirective />}
-
       <div className="answer_input_wrapper">
         <AnswerInput
           tempSubmittedAnswer={tempSubmittedAnswer}

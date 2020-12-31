@@ -8,7 +8,7 @@ export default function ConfirmButton({
   return (
     <div className="quiz_confirm_next_wrapper">
       <button
-        type="submit"
+        type="button"
         className="quiz_confirm_button"
         onClick={
           whichButton === "confirm" ? () => checkAnswer() : () => nextQuestion()
