@@ -1,0 +1,22 @@
+.indicators_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title_button {
+  display: flex;
+  margin: 0em 1em;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  background: var(--poke-blue);
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.round_indicator {
+  display: flex;
+  margin: 1em;
+}

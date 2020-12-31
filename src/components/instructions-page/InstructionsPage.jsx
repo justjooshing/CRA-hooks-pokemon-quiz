@@ -1,19 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import Instructions from "./instructions/Instructions"
-import ContinueButton from "./continue-button/ContinueButton"
+import Instructions from "./instructions/Instructions";
+import ContinueButton from "./continue-button/ContinueButton";
+import ModeIndicator from "../indicators/ModeIndicator";
 
-import "./InstructionsPage.css"
-
-export default function InstructionsPage({difficulty, setPage}) {
+export default function InstructionsPage({ difficulty, setPage }) {
   return (
     <>
-      <div className="mode_indicator">{difficulty.toUpperCase()}</div>
-      <Instructions 
-        difficulty = {difficulty}
-      />
-      <ContinueButton 
-      setPage={setPage}/>
+      <ModeIndicator difficulty={difficulty} />
+      <Instructions difficulty={difficulty} />
+      <ContinueButton setPage={setPage} />
     </>
-  )
+  );
 }
