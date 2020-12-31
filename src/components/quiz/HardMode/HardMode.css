@@ -1,0 +1,12 @@
+.answer_confirm_wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+}
+
+.answer_input_wrapper {
+  padding-top: 30px;
+  margin: 0em 5em;
+  font-family: var(--secondary-text-font);
+}

@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./PokemonImage.css";
 
 export default function PokemonImage({ pokemon }) {

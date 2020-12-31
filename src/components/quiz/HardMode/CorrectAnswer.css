@@ -1,0 +1,9 @@
+.correct_answer_text {
+  padding: 0.6em;
+  margin: 0.5em 1em;
+  border: green 0.5em solid;
+  position: absolute;
+  background-color: white;
+  font-family: var(--seconday-text-font);
+  font-size: 0.8em;
+}

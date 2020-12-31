@@ -9,6 +9,7 @@ import "./App.css";
 export default function App() {
   const [page, setPage] = useState();
   const [difficulty, setDifficulty] = useState();
+  const [score, setScore] = useState(0);
 
   const resetDifficulty = () => {
     setDifficulty(null);
@@ -23,8 +24,12 @@ export default function App() {
           difficulty={difficulty}
           setPage={setPage}
           resetDifficulty={resetDifficulty}
+          score={score}
+          setScore={setScore}
         />
       );
+    case "finished":
+      return "finished";
     default:
       return <IntroPage setDifficulty={setDifficulty} setPage={setPage} />;
   }

@@ -1,0 +1,16 @@
+.answer_input {
+  padding: 0.5em;
+  margin: 0em 1em;
+  border: transparent 0.5em solid;
+}
+
+.answer_input_correct {
+  padding: 0.5em;
+  margin: 0em 1em;
+  border: green 0.5em solid;
+}
+.answer_input_incorrect {
+  padding: 0.5em;
+  margin: 0em 1em;
+  border: var(--poke-red) 0.5em solid;
+}

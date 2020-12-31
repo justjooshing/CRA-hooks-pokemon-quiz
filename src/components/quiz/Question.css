@@ -1,0 +1,6 @@
+.quiz_pokemon_question {
+  text-align: center;
+  font-family: var(--main-text-font);
+  padding: 0.5em;
+  line-height: 1.5em;
+}

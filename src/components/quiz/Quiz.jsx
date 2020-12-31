@@ -1,44 +1,49 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IndicatorsWrapper from "../indicators/IndicatorsWrapper";
 import PokemonImage from "./PokemonImage";
+import Question from "./Question";
+import HardMode from "./HardMode/HardMode";
 
-import grabAllPokemon from "../../functions/grabAllPokemon";
+// import grabAllPokemon from "../../functions/grabAllPokemon";
 import generatePokemonQuestions from "../../functions/generatePokemonQuestions";
-import generateQuestionTypes from "../../functions/generateQuestionTypes";
+import generateQuestionTopics from "../../functions/generateQuestionTopics";
 
-export default function Quiz({ difficulty, setPage, resetDifficulty }) {
-  const [pokemonNames, setPokemonNames] = useState();
+export default function Quiz({
+  difficulty,
+  setPage,
+  resetDifficulty,
+  setScore,
+  score,
+}) {
+  // const [pokemonNames, setPokemonNames] = useState();
+
+  // const names = await grabAllPokemon();
+  // setPokemonNames(names);
+
+  // console.log(pokemonNames);
   const [pokemonQuestions, setPokemonQuestions] = useState();
-  const [questionTypes, setQuestionTypes] = useState();
+  const [questionTopics, setQuestionTopics] = useState();
 
   const [round, setRound] = useState(0);
 
-  const allUpdated = pokemonNames && pokemonQuestions && questionTypes;
+  const allUpdated = pokemonQuestions && questionTopics;
 
   useEffect(() => {
-    if (!pokemonNames) {
-      const setUpQuiz = async () => {
-        const names = await grabAllPokemon();
-        setPokemonNames(names);
+    if (!pokemonQuestions) {
+      const runGeneratePokemonQuestions = async () => {
         const questions = await generatePokemonQuestions();
         setPokemonQuestions(questions);
       };
-      setUpQuiz();
+      runGeneratePokemonQuestions();
     }
   });
 
   useEffect(() => {
     if (pokemonQuestions) {
-      const types = generateQuestionTypes(pokemonQuestions);
-      setQuestionTypes(types);
+      const topics = generateQuestionTopics(pokemonQuestions);
+      setQuestionTopics(topics);
     }
   }, [pokemonQuestions]);
-
-  const logAll = () => {
-    // console.log(pokemonNames);
-    console.log(pokemonQuestions);
-    // console.log(questionTypes);
-  };
 
   if (allUpdated) {
     return (
@@ -51,7 +56,20 @@ export default function Quiz({ difficulty, setPage, resetDifficulty }) {
           setRound={setRound}
         />
         <PokemonImage pokemon={pokemonQuestions[round]} />
-        <button onClick={() => logAll()}>Click</button>
+        <Question topic={questionTopics[round]} />
+
+        {difficulty === "easy" ? null : (
+          <HardMode
+            pokemon={pokemonQuestions[round]}
+            topic={questionTopics[round]}
+            round={round}
+            setRound={setRound}
+            setPage={setPage}
+            setScore={setScore}
+            score={score}
+          />
+        )}
+        {/* <button onClick={() => logAll()}>Click</button> */}
       </>
     );
   } else {
