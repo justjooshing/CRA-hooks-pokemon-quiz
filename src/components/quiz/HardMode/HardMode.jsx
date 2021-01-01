@@ -35,6 +35,9 @@ export default function HardMode({
     }
   }, [submittedAnswer, tempSubmittedAnswer]);
 
+  //I want to make this into it's own component that can pass in states to update.
+  //Hard uses 3, easy uses 2, I'm sure I can also pass in round
+  //and set round instead of passing it all the way down
   const nextQuestion = () => {
     if (round < 9) {
       setRound(round + 1);

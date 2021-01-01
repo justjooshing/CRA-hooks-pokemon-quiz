@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import IndicatorsWrapper from "../indicators/IndicatorsWrapper";
 import PokemonImage from "./PokemonImage";
 import Question from "./Question";
+import EasyMode from "./EasyMode/EasyMode";
 import HardMode from "./HardMode/HardMode";
 
-// import grabAllPokemon from "../../functions/grabAllPokemon";
 import generatePokemonQuestions from "../../functions/generatePokemonQuestions";
 import generateQuestionTopics from "../../functions/generateQuestionTopics";
 
@@ -15,13 +15,7 @@ export default function Quiz({
   setScore,
   score,
 }) {
-  // const [pokemonNames, setPokemonNames] = useState();
-
-  // const names = await grabAllPokemon();
-  // setPokemonNames(names);
-
-  // console.log(pokemonNames);
-  const [pokemonQuestions, setPokemonQuestions] = useState();
+  const [pokemonQuestions, setPokemonQuestions] = useState(null);
   const [questionTopics, setQuestionTopics] = useState();
 
   const [round, setRound] = useState(0);
@@ -58,7 +52,18 @@ export default function Quiz({
         <PokemonImage pokemon={pokemonQuestions[round]} />
         <Question topic={questionTopics[round]} />
 
-        {difficulty === "easy" ? null : (
+        {difficulty === "easy" ? (
+          <EasyMode
+            pokemon={pokemonQuestions[round]}
+            round={round}
+            setRound={setRound}
+            setPage={setPage}
+            setScore={setScore}
+            score={score}
+            topics={questionTopics}
+            answers={pokemonQuestions}
+          />
+        ) : (
           <HardMode
             pokemon={pokemonQuestions[round]}
             topic={questionTopics[round]}
@@ -69,7 +74,6 @@ export default function Quiz({
             score={score}
           />
         )}
-        {/* <button onClick={() => logAll()}>Click</button> */}
       </>
     );
   } else {

@@ -1,0 +1,7 @@
+.quiz_answers_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1em;
+  margin: 2em 1em 0em;
+}
