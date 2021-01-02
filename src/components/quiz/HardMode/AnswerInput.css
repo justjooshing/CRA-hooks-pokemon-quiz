@@ -4,9 +4,9 @@
   border: transparent 0.5em solid;
 }
 
-.correct {
+.answer_input_correct {
   border: green 0.5em solid;
 }
-.incorrect {
+.answer_input_incorrect {
   border: var(--poke-red) 0.5em solid;
 }

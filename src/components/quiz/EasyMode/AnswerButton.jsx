@@ -14,10 +14,10 @@ export default function AnswerButton({
       type="button"
       className={
         answerOption === correctAnswer
-          ? "quiz_answer_buttons correct"
+          ? "answer_buttons answer_buttons_correct"
           : answerOption === selectedAnswer && answerOption !== correctAnswer
-          ? "quiz_answer_buttons incorrect"
-          : "quiz_answer_buttons post_selection"
+          ? "answer_buttons answer_buttons_incorrect"
+          : "answer_buttons answer_buttons_post_selection"
       }
     >
       {capitalisedAnswer}
@@ -27,8 +27,8 @@ export default function AnswerButton({
       type="button"
       className={
         answerOption === selectedAnswer
-          ? "quiz_answer_buttons selected"
-          : "quiz_answer_buttons"
+          ? "answer_buttons answer_buttons_selected"
+          : "answer_buttons"
       }
       onClick={() => isSelected(answerOption)}
     >

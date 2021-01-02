@@ -1,4 +1,4 @@
-.quiz_answer_buttons {
+.answer_buttons {
   text-align: center;
   padding: 1em;
   color: white;
@@ -7,20 +7,20 @@
   border: solid transparent 10px;
 }
 
-.selected {
+.answer_buttons_selected {
   border: solid green 10px;
 }
 
-.correct {
+.answer_buttons_correct {
   cursor: default;
   background: green;
 }
 
-.incorrect {
+.answer_buttons_incorrect {
   cursor: default;
   background: var(--poke-red);
 }
 
-.post_selection {
+.answer_buttons_post_selection {
   cursor: default;
 }

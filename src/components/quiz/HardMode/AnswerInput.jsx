@@ -12,9 +12,9 @@ export default function AnswerInput({
       type="text"
       className={
         whichButton === "next" && correctAnswer === submittedAnswer
-          ? "answer_input correct"
+          ? "answer_input answer_input_correct"
           : whichButton === "next"
-          ? "answer_input incorrect"
+          ? "answer_input answer_input_incorrect"
           : "answer_input"
       }
       placeholder="Your answer here..."
