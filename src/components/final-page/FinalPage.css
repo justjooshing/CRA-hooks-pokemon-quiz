@@ -1,0 +1,24 @@
+.final_page_score {
+  display: flex;
+  place-content: center;
+  font-size: 4em;
+}
+
+.final_page_image {
+  margin: 1em;
+  width: 90vw;
+  max-width: 324px;
+}
+
+.final_page_image_wrapper {
+  display: flex;
+  place-content: center;
+}
+
+.final_page_text_paragraph {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.3em;
+  font-family: var(--main-text-font);
+  line-height: 1.5em;
+}

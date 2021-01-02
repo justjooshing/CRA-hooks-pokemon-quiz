@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import IntroPage from "./components/intro-page/IntroPage";
 import InstructionsPage from "./components/instructions-page/InstructionsPage";
 import Quiz from "./components/quiz/Quiz";
+import FinalPage from "./components/final-page/FinalPage";
 
 import "./App.css";
 
@@ -13,6 +14,12 @@ export default function App() {
 
   const resetDifficulty = () => {
     setDifficulty(null);
+  };
+
+  const startOver = () => {
+    resetDifficulty();
+    setScore(0);
+    setPage(null);
   };
 
   switch (page) {
@@ -29,7 +36,13 @@ export default function App() {
         />
       );
     case "finished":
-      return "finished";
+      return (
+        <FinalPage
+          score={score}
+          difficulty={difficulty}
+          startOver={startOver}
+        />
+      );
     default:
       return <IntroPage setDifficulty={setDifficulty} setPage={setPage} />;
   }

@@ -1,0 +1,18 @@
+.start_over_button_wrapper {
+  padding: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.start_over_button {
+  background: var(--poke-red);
+  cursor: pointer;
+  padding: 0.8em;
+  cursor: pointer;
+}
+
+.start_over_button_text {
+  font-family: var(--main-text-font);
+  color: white;
+  animation: blink 1.5s infinite;
+}
