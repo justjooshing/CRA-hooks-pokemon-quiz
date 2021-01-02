@@ -1,4 +1,4 @@
-.instructions_continue_button_loaded {
+.instructions_continue_button {
   align-self: center;
   color: #fff;
   background-color: var(--poke-dark-red);
@@ -7,26 +7,11 @@
   cursor: pointer;
 }
 
-.instructions_continue_button_text_loaded {
+.instructions_continue_button_text {
   padding-bottom: 5px;
   font-family: var(--main-text-font);
   font-weight: lighter;
   animation: blink 1.5s infinite;
-}
-
-.instructions_pokeball {
-  height: 40px;
-  animation: rotate 1.5s linear infinite;
-}
-
-@keyframes rotate {
-  10% {
-    transform: rotate(-10deg);
-  }
-
-  15% {
-    transform: rotate(0deg);
-  }
 }
 
 @keyframes blink {

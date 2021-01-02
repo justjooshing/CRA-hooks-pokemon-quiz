@@ -4,6 +4,7 @@ import PokemonImage from "./PokemonImage";
 import Question from "./Question";
 import EasyMode from "./EasyMode/EasyMode";
 import HardMode from "./HardMode/HardMode";
+import LoadingScreen from "./LoadingScreen";
 
 import generatePokemonQuestions from "../../functions/generatePokemonQuestions";
 import generateQuestionTopics from "../../functions/generateQuestionTopics";
@@ -74,6 +75,6 @@ export default function Quiz({
       </>
     );
   } else {
-    return <h1>Loading</h1>;
+    return <LoadingScreen />;
   }
 }
