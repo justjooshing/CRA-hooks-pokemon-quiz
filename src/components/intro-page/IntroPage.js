@@ -1,5 +1,3 @@
-import React from "react";
-
 import Heading from "./heading/Heading";
 import Subheading from "./subheading/Subheading";
 import Modes from "./modes/Modes";

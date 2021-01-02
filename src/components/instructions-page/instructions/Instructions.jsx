@@ -1,6 +1,4 @@
-import React from "react";
-
-import "./Instructions.css"
+import "./Instructions.css";
 
 export default function Instructions({ difficulty }) {
   const instructions = {
@@ -24,6 +22,7 @@ export default function Instructions({ difficulty }) {
   return (
     <div className="instructions_wrapper">
       {instructions[difficulty].map((line, index) => (
+        //need to use a better key than index
         <p className="instructions_lines" key={index}>
           {line}
         </p>

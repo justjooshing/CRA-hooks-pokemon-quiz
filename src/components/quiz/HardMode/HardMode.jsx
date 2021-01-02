@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import TypeDirective from "./TypeDirective";
 import AnswerInput from "./AnswerInput";
 import CorrectAnswer from "./CorrectAnswer";
-import ConfirmButton from "./ConfirmButton";
+import ConfirmButton from "../ConfirmButton";
 
 import "./HardMode.css";
 
@@ -35,21 +35,12 @@ export default function HardMode({
     }
   }, [submittedAnswer, tempSubmittedAnswer]);
 
-  //I want to make this into it's own component that can pass in states to update.
-  //Hard uses 3, easy uses 2, I'm sure I can also pass in round
-  //and set round instead of passing it all the way down
-  const nextQuestion = () => {
-    if (round < 9) {
-      setRound(round + 1);
-    } else {
-      setPage("finished");
-    }
-    setWhichButton("skip");
+  const resetForNextQuestion = () => {
     setTempSubmittedAnswer("");
     setSubmittedAnswer("");
   };
 
-  const checkAnswer = () => {
+  const addScore = () => {
     let holdTempAnswer = tempSubmittedAnswer;
 
     if (holdTempAnswer === "farfetch'd") {
@@ -64,7 +55,6 @@ export default function HardMode({
       }
     }
     setSubmittedAnswer(holdTempAnswer);
-    setWhichButton("next");
   };
 
   return (
@@ -87,8 +77,12 @@ export default function HardMode({
       </div>
       <ConfirmButton
         whichButton={whichButton}
-        nextQuestion={nextQuestion}
-        checkAnswer={checkAnswer}
+        resetForNextQuestion={resetForNextQuestion}
+        round={round}
+        setPage={setPage}
+        setRound={setRound}
+        setWhichButton={setWhichButton}
+        addScore={addScore}
       />
     </form>
   );

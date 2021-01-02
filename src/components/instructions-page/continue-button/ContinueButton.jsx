@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./ContinueButton.css";
 
 export default function ContinueButton({ setPage }) {

@@ -11,13 +11,12 @@ import generateQuestionTopics from "../../functions/generateQuestionTopics";
 export default function Quiz({
   difficulty,
   setPage,
-  resetDifficulty,
   setScore,
   score,
+  startOver,
 }) {
   const [pokemonQuestions, setPokemonQuestions] = useState(null);
   const [questionTopics, setQuestionTopics] = useState();
-
   const [round, setRound] = useState(0);
 
   const allUpdated = pokemonQuestions && questionTopics;
@@ -44,10 +43,8 @@ export default function Quiz({
       <>
         <IndicatorsWrapper
           difficulty={difficulty}
-          resetDifficulty={resetDifficulty}
-          setPage={setPage}
           round={round}
-          setRound={setRound}
+          startOver={startOver}
         />
         <PokemonImage pokemon={pokemonQuestions[round]} />
         <Question topic={questionTopics[round]} />

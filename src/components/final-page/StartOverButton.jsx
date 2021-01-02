@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./StartOverButton.css";
 
 export default function StartOverButton({ startOver }) {

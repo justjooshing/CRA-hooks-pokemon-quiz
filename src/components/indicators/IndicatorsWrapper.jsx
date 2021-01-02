@@ -1,22 +1,8 @@
-import React from "react";
-
 import ModeIndicator from "./ModeIndicator";
 
 import "./IndicatorsWrapper.css";
 
-export default function IndicatorsWrapper({
-  difficulty,
-  resetDifficulty,
-  setPage,
-  round,
-  setRound,
-}) {
-  const startOver = () => {
-    resetDifficulty();
-    setPage(null);
-    setRound(0);
-  };
-
+export default function IndicatorsWrapper({ difficulty, round, startOver }) {
   return (
     <div className="indicators_wrapper">
       <ModeIndicator difficulty={difficulty} />

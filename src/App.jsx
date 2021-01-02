@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import IntroPage from "./components/intro-page/IntroPage";
 import InstructionsPage from "./components/instructions-page/InstructionsPage";
@@ -30,9 +30,9 @@ export default function App() {
         <Quiz
           difficulty={difficulty}
           setPage={setPage}
-          resetDifficulty={resetDifficulty}
           score={score}
           setScore={setScore}
+          startOver={startOver}
         />
       );
     case "finished":

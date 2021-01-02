@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import AnswerButton from "./AnswerButton";
-import ConfirmButton from "../HardMode/ConfirmButton";
+import ConfirmButton from "../ConfirmButton";
 
 import generatePossibleAnswers from "../../../functions/generatePossibleAnswers";
 
@@ -37,21 +37,14 @@ export default function EasyMode({
     setSelectedAnswer(answerOption);
   };
 
-  const nextQuestion = () => {
-    if (round < 9) {
-      setRound(round + 1);
-    } else {
-      setPage("finished");
-    }
-    setWhichButton("skip");
+  const resetForNextQuestion = () => {
     setSelectedAnswer("");
   };
 
-  const checkAnswer = () => {
+  const addScore = () => {
     if (selectedAnswer === correctAnswer) {
       setScore(score + 1);
     }
-    setWhichButton("next");
   };
 
   if (answerOptions) {
@@ -73,8 +66,12 @@ export default function EasyMode({
         </div>
         <ConfirmButton
           whichButton={whichButton}
-          nextQuestion={nextQuestion}
-          checkAnswer={checkAnswer}
+          resetForNextQuestion={resetForNextQuestion}
+          round={round}
+          setPage={setPage}
+          setRound={setRound}
+          setWhichButton={setWhichButton}
+          addScore={addScore}
         />
       </form>
     );

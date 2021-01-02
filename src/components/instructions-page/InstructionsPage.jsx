@@ -1,5 +1,3 @@
-import React from "react";
-
 import Instructions from "./instructions/Instructions";
 import ContinueButton from "./continue-button/ContinueButton";
 import ModeIndicator from "../indicators/ModeIndicator";

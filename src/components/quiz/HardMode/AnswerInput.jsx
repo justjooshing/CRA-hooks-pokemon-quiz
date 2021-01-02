@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./AnswerInput.css";
 
 export default function AnswerInput({
