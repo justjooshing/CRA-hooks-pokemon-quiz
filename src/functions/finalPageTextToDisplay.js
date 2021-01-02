@@ -7,9 +7,9 @@ const finalPageTextToDisplay = (difficulty, score) => {
         "Oh no!",
         "You're going to have to train a lot more to become the best",
       ];
-    if (score < 7)
+    else if (score < 7)
       return ["Close!", "You know your stuff, but still need some training"];
-    else
+    else if (score >= 7)
       return [
         "Well done!",
         "You are truly on your way to becoming a pokemon master",
@@ -21,12 +21,13 @@ const finalPageTextToDisplay = (difficulty, score) => {
         "Oh no!",
         "You've been training, but are not at pokemon master level just yet",
       ];
-    if (score < 7)
+    else if (score < 7)
       return [
         "Close!",
         "Gary is still ahead of you on the journey to become a pokemon master",
       ];
-    else return ["Well done!", "You truly are a pokemon master"];
+    else if (score >= 7)
+      return ["Well done!", "You truly are a pokemon master"];
   }
 };
 

@@ -5,17 +5,17 @@ import under_four from "../images/final_page/pikachu_under_4.jpg";
 const finalPagePictureToDisplay = (score) => {
   if (score < 4) {
     return { fileName: under_four, altText: "pikachu defeated" };
-  }
-  if (score < 7) {
+  } else if (score < 7) {
     return {
       fileName: under_seven,
       altText: "pikachu looking confused",
     };
+  } else if (score >= 7) {
+    return {
+      fileName: seven_and_up,
+      altText: "ash from pokemon success image",
+    };
   }
-  return {
-    fileName: seven_and_up,
-    altText: "ash from pokemon success image",
-  };
 };
 
 export default finalPagePictureToDisplay;
