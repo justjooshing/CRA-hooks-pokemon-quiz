@@ -12,12 +12,11 @@ export default function AnswerInput({
       type="text"
       className={
         whichButton === "next" && correctAnswer === submittedAnswer
-          ? "answer_input_correct"
+          ? "answer_input correct"
           : whichButton === "next"
-          ? "answer_input_incorrect"
+          ? "answer_input incorrect"
           : "answer_input"
       }
-      id="submittedAnswer"
       placeholder="Your answer here..."
       value={tempSubmittedAnswer}
       onChange={updateTempAnswer}
