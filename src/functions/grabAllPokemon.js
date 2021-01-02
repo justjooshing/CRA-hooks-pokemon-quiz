@@ -17,7 +17,5 @@ export default async function grabAllPokemon() {
     }
     allPokemonNames.push(pokemon.name);
   });
-
-  //set state with all 151 pokemon names array
   return allPokemonNames;
 }

@@ -42,8 +42,6 @@ const generateQuestions = async () => {
       questionSet.push(pokemon);
     }
   }
-
-  //Set state with new pokemon set now containing (n) pokemon
   return questionSet;
 };
 
