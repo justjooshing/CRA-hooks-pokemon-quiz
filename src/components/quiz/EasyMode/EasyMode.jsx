@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import AnswerButton from "./AnswerButton";
 import ConfirmButton from "../ConfirmButton";
 
-import generatePossibleAnswers from "../../../functions/generatePossibleAnswers";
+import { generatePossibleAnswers } from "../../../functions/quizFunctions";
 
 import "./EasyMode.css";
 

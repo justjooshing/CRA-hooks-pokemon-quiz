@@ -1,4 +1,4 @@
-import capitaliseFirstLetter from "../../../functions/capitaliseFirstLetter";
+import { capitaliseFirstLetter } from "../../../functions/quizFunctions";
 
 import "./CorrectAnswer.css";
 

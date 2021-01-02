@@ -2,8 +2,10 @@ import StartOverButton from "./StartOverButton";
 
 import "./FinalPage.css";
 
-import finalPagePictureToDisplay from "../../functions/finalPagePictureToDisplay";
-import finalPageTextToDisplay from "../../functions/finalPageTextToDisplay";
+import {
+  finalPagePictureToDisplay,
+  finalPageTextToDisplay,
+} from "../../functions/finalPageFunctions";
 
 export default function FinalPage({ difficulty, score, startOver }) {
   return (
@@ -18,10 +20,10 @@ export default function FinalPage({ difficulty, score, startOver }) {
       </div>
       <div>
         <p className="final_page_text_paragraph">
-          {finalPageTextToDisplay(difficulty, score)[0]}
+          {finalPageTextToDisplay(difficulty, score).exclamation}
         </p>
         <p className="final_page_text_paragraph">
-          {finalPageTextToDisplay(difficulty, score)[1]}
+          {finalPageTextToDisplay(difficulty, score).text}
         </p>
       </div>
       <StartOverButton startOver={startOver} />

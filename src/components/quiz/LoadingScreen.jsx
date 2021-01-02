@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./LoadingScreen.css";
 
 import pokeball from "../../images/quiz/pokeball.png";

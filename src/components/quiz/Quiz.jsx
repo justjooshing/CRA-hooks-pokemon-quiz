@@ -6,8 +6,10 @@ import EasyMode from "./EasyMode/EasyMode";
 import HardMode from "./HardMode/HardMode";
 import LoadingScreen from "./LoadingScreen";
 
-import generatePokemonQuestions from "../../functions/generatePokemonQuestions";
-import generateQuestionTopics from "../../functions/generateQuestionTopics";
+import {
+  generatePokemonQuestions,
+  generateQuestionTopics,
+} from "../../functions/quizFunctions";
 
 export default function Quiz({
   difficulty,

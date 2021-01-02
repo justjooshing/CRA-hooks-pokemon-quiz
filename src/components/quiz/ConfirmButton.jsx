@@ -1,5 +1,3 @@
-import updateRound from "../../functions/updateRound.js";
-
 import "./ConfirmButton.css";
 
 export default function ConfirmButton({
@@ -12,7 +10,12 @@ export default function ConfirmButton({
   addScore,
 }) {
   const nextQuestion = () => {
-    updateRound(round, setRound, setPage, setWhichButton);
+    if (round < 9) {
+      setRound(round + 1);
+    } else {
+      setPage("finished");
+    }
+    setWhichButton("skip");
     resetForNextQuestion();
   };
 
