@@ -5,6 +5,8 @@ import AnswerInput from "./AnswerInput";
 import CorrectAnswer from "./CorrectAnswer";
 import ConfirmButton from "../ConfirmButton";
 
+import { resetButtonAndRound } from "../../../functions/quizFunctions";
+
 import "./HardMode.css";
 
 export default function HardMode({
@@ -36,6 +38,7 @@ export default function HardMode({
   }, [submittedAnswer, tempSubmittedAnswer]);
 
   const resetForNextQuestion = () => {
+    resetButtonAndRound(round, setRound, setPage, setWhichButton);
     setTempSubmittedAnswer("");
     setSubmittedAnswer("");
   };
@@ -78,9 +81,6 @@ export default function HardMode({
       <ConfirmButton
         whichButton={whichButton}
         resetForNextQuestion={resetForNextQuestion}
-        round={round}
-        setPage={setPage}
-        setRound={setRound}
         setWhichButton={setWhichButton}
         addScore={addScore}
       />

@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import AnswerButton from "./AnswerButton";
 import ConfirmButton from "../ConfirmButton";
 
-import { generatePossibleAnswers } from "../../../functions/quizFunctions";
+import {
+  generatePossibleAnswers,
+  resetButtonAndRound,
+} from "../../../functions/quizFunctions";
 
 import "./EasyMode.css";
 
@@ -38,6 +41,7 @@ export default function EasyMode({
   };
 
   const resetForNextQuestion = () => {
+    resetButtonAndRound(round, setRound, setPage, setWhichButton);
     setSelectedAnswer("");
   };
 
@@ -67,9 +71,6 @@ export default function EasyMode({
         <ConfirmButton
           whichButton={whichButton}
           resetForNextQuestion={resetForNextQuestion}
-          round={round}
-          setPage={setPage}
-          setRound={setRound}
           setWhichButton={setWhichButton}
           addScore={addScore}
         />
