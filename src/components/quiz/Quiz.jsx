@@ -25,19 +25,15 @@ export default function Quiz({
   const allUpdated = pokemonQuestions && questionTopics;
 
   useEffect(() => {
-    if (!pokemonQuestions) {
+    if (pokemonQuestions) {
+      const topics = generateQuestionTopics(pokemonQuestions);
+      setQuestionTopics(topics);
+    } else if (!pokemonQuestions) {
       const runGeneratePokemonQuestions = async () => {
         const questions = await generatePokemonQuestions();
         setPokemonQuestions(questions);
       };
       runGeneratePokemonQuestions();
-    }
-  });
-
-  useEffect(() => {
-    if (pokemonQuestions) {
-      const topics = generateQuestionTopics(pokemonQuestions);
-      setQuestionTopics(topics);
     }
   }, [pokemonQuestions]);
 
