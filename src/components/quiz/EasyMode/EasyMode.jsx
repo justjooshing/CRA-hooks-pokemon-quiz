@@ -60,10 +60,10 @@ export default function EasyMode({
     return (
       <form>
         <div className="quiz_answers_wrapper">
-          {answerOptions[round].map((answerOption, index) => {
+          {answerOptions[round].map((answerOption) => {
             return (
               <AnswerButton
-                key={index}
+                key={answerOption}
                 whichButton={whichButton}
                 correctAnswer={correctAnswer}
                 answerOption={answerOption}

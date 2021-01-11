@@ -25,7 +25,6 @@ export default function Instructions() {
   return (
     <div className="instructions_wrapper">
       {instructions[difficulty].map((line, index) => (
-        //need to use a better key than index
         <p className="instructions_lines" key={index}>
           {line}
         </p>
