@@ -1,16 +1,15 @@
 import ModeButton from "./ModeButton";
-
 import "./Modes.css";
 
-export default function Modes({ setDifficulty, setPage }) {
+export default function Modes() {
   const modes = [
     {
       difficulty: "easy",
-      button_paragraph: "For pokemon masters in training",
+      button_text: "For pokemon masters in training",
     },
     {
       difficulty: "hard",
-      button_paragraph: "For experienced pokemon masters",
+      button_text: "For experienced pokemon masters",
     },
   ];
 
@@ -19,10 +18,8 @@ export default function Modes({ setDifficulty, setPage }) {
       {Object.values(modes).map((mode, index) => (
         <ModeButton
           key={index}
-          setDifficulty={setDifficulty}
-          setPage={setPage}
           difficulty={mode.difficulty}
-          button_paragraph={mode.button_paragraph}
+          button_text={mode.button_text}
         />
       ))}
     </div>

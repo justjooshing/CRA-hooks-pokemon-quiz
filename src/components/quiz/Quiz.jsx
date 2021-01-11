@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 import IndicatorsWrapper from "../indicators/IndicatorsWrapper";
 import PokemonImage from "./PokemonImage";
 import Question from "./Question";
@@ -11,16 +13,13 @@ import {
   generateQuestionTopics,
 } from "../../functions/quizFunctions";
 
-export default function Quiz({
-  difficulty,
-  setPage,
-  setScore,
-  score,
-  startOver,
-}) {
+export default function Quiz() {
   const [pokemonQuestions, setPokemonQuestions] = useState(null);
   const [questionTopics, setQuestionTopics] = useState();
   const [round, setRound] = useState(0);
+  const [whichButton, setWhichButton] = useState("skip");
+
+  const difficulty = useSelector((state) => state.difficulty);
 
   const allUpdated = pokemonQuestions && questionTopics;
 
@@ -40,24 +39,19 @@ export default function Quiz({
   if (allUpdated) {
     return (
       <>
-        <IndicatorsWrapper
-          difficulty={difficulty}
-          round={round}
-          startOver={startOver}
-        />
+        <IndicatorsWrapper round={round} />
         <PokemonImage pokemon={pokemonQuestions[round]} />
         <Question topic={questionTopics[round]} />
 
         {difficulty === "easy" ? (
           <EasyMode
             pokemon={pokemonQuestions[round]}
+            topics={questionTopics}
             round={round}
             setRound={setRound}
-            setPage={setPage}
-            setScore={setScore}
-            score={score}
-            topics={questionTopics}
             answers={pokemonQuestions}
+            whichButton={whichButton}
+            setWhichButton={setWhichButton}
           />
         ) : (
           <HardMode
@@ -65,9 +59,8 @@ export default function Quiz({
             topic={questionTopics[round]}
             round={round}
             setRound={setRound}
-            setPage={setPage}
-            setScore={setScore}
-            score={score}
+            whichButton={whichButton}
+            setWhichButton={setWhichButton}
           />
         )}
       </>

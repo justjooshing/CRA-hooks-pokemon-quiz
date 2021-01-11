@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import "./Instructions.css";
 
-export default function Instructions({ difficulty }) {
+export default function Instructions() {
+  const difficulty = useSelector((state) => state.difficulty);
+
   const instructions = {
     easy: [
       "You will be presented with 10 questions.",

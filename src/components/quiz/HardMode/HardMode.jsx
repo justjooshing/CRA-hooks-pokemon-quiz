@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { setScore, setPage } from "../../../actions";
 
 import TypeDirective from "./TypeDirective";
 import AnswerInput from "./AnswerInput";
 import CorrectAnswer from "./CorrectAnswer";
 import ConfirmButton from "../ConfirmButton";
-
-import { resetButtonAndRound } from "../../../functions/quizFunctions";
 
 import "./HardMode.css";
 
@@ -13,15 +14,15 @@ export default function HardMode({
   pokemon,
   topic,
   round,
-  setPage,
   setRound,
-  score,
-  setScore,
+  whichButton,
+  setWhichButton,
 }) {
-  const [whichButton, setWhichButton] = useState("skip");
   const [tempSubmittedAnswer, setTempSubmittedAnswer] = useState("");
   const [submittedAnswer, setSubmittedAnswer] = useState("");
   const correctAnswer = pokemon[topic];
+
+  const dispatch = useDispatch();
 
   const updateTempAnswer = (e) => {
     setTempSubmittedAnswer(e.target.value);
@@ -35,10 +36,15 @@ export default function HardMode({
     } else {
       setWhichButton("skip");
     }
-  }, [submittedAnswer, tempSubmittedAnswer]);
+  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton]);
 
   const resetForNextQuestion = () => {
-    resetButtonAndRound(round, setRound, setPage, setWhichButton);
+    if (round < 9) {
+      setRound(round + 1);
+    } else {
+      dispatch(setPage("finished"));
+    }
+    setWhichButton("skip");
     setTempSubmittedAnswer("");
     setSubmittedAnswer("");
   };
@@ -50,11 +56,11 @@ export default function HardMode({
       holdTempAnswer = "farfetchd";
     }
     if (holdTempAnswer === correctAnswer) {
-      setScore(score + 1);
+      dispatch(setScore());
     } else if (holdTempAnswer.includes("/")) {
       holdTempAnswer = holdTempAnswer.split("/").reverse().join("/");
       if (holdTempAnswer === correctAnswer) {
-        setScore(score + 1);
+        dispatch(setScore());
       }
     }
     setSubmittedAnswer(holdTempAnswer);

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
+import { useDispatch } from "react-redux";
+import { setScore, setPage } from "../../../actions";
+
 import AnswerButton from "./AnswerButton";
 import ConfirmButton from "../ConfirmButton";
 
-import {
-  generatePossibleAnswers,
-  resetButtonAndRound,
-} from "../../../functions/quizFunctions";
+import { generatePossibleAnswers } from "../../../functions/quizFunctions";
 
 import "./EasyMode.css";
 
@@ -14,16 +14,16 @@ export default function EasyMode({
   pokemon,
   topics,
   round,
-  answers,
   setRound,
-  setPage,
-  score,
-  setScore,
+  answers,
+  whichButton,
+  setWhichButton,
 }) {
-  const [whichButton, setWhichButton] = useState("skip");
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answerOptions, setAnswerOptions] = useState(null);
   const correctAnswer = pokemon[topics[round]];
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!answerOptions) {
@@ -41,13 +41,18 @@ export default function EasyMode({
   };
 
   const resetForNextQuestion = () => {
-    resetButtonAndRound(round, setRound, setPage, setWhichButton);
+    if (round < 9) {
+      setRound(round + 1);
+    } else {
+      dispatch(setPage("finished"));
+    }
+    setWhichButton("skip");
     setSelectedAnswer("");
   };
 
   const addScore = () => {
     if (selectedAnswer === correctAnswer) {
-      setScore(score + 1);
+      dispatch(setScore());
     }
   };
 

@@ -1,19 +1,19 @@
-export default function ModeButton({
-  button_paragraph,
-  difficulty,
-  setDifficulty,
-  setPage,
-}) {
+import { useDispatch } from "react-redux";
+
+import { setDifficulty, setPage } from "../../../actions";
+
+export default function ModeButton({ button_text, difficulty }) {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(setDifficulty(difficulty));
+    dispatch(setPage("instructions"));
+  };
+
   return (
-    <button
-      className="modes_options"
-      onClick={() => {
-        setDifficulty(difficulty);
-        setPage("instructions");
-      }}
-    >
+    <button className="modes_options" onClick={handleClick}>
       <h2 className="mode_heading">{difficulty.toUpperCase()}</h2>
-      <p>{button_paragraph}</p>
+      <p>{button_text}</p>
     </button>
   );
 }

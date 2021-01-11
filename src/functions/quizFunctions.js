@@ -140,21 +140,6 @@ export const generatePossibleAnswers = async (answers, topics) => {
     });
 
     answerSets.forEach((roundOptions) => shuffle(roundOptions));
-
     return answerSets;
   }
-};
-
-export const resetButtonAndRound = (
-  round,
-  setRound,
-  setPage,
-  setWhichButton
-) => {
-  if (round < 9) {
-    setRound(round + 1);
-  } else {
-    setPage("finished");
-  }
-  setWhichButton("skip");
 };

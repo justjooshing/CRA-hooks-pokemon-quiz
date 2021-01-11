@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import StartOverButton from "./StartOverButton";
 
 import "./FinalPage.css";
@@ -7,7 +9,10 @@ import {
   finalPageTextToDisplay,
 } from "../../functions/finalPageFunctions";
 
-export default function FinalPage({ difficulty, score, startOver }) {
+export default function FinalPage() {
+  const difficulty = useSelector((state) => state.difficulty);
+  const score = useSelector((state) => state.score);
+
   return (
     <div>
       <h1 className="final_page_score">{score}/10</h1>
@@ -26,7 +31,7 @@ export default function FinalPage({ difficulty, score, startOver }) {
           {finalPageTextToDisplay(difficulty, score).text}
         </p>
       </div>
-      <StartOverButton startOver={startOver} />
+      <StartOverButton />
     </div>
   );
 }

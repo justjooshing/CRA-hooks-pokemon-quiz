@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import IntroPage from "./components/intro-page/IntroPage";
 import InstructionsPage from "./components/instructions-page/InstructionsPage";
@@ -8,42 +8,16 @@ import FinalPage from "./components/final-page/FinalPage";
 import "./App.css";
 
 export default function App() {
-  const [page, setPage] = useState();
-  const [difficulty, setDifficulty] = useState();
-  const [score, setScore] = useState(0);
-
-  const resetDifficulty = () => {
-    setDifficulty(null);
-  };
-
-  const startOver = () => {
-    resetDifficulty();
-    setScore(0);
-    setPage(null);
-  };
+  const page = useSelector((state) => state.page);
 
   switch (page) {
     case "instructions":
-      return <InstructionsPage difficulty={difficulty} setPage={setPage} />;
+      return <InstructionsPage />;
     case "quiz":
-      return (
-        <Quiz
-          difficulty={difficulty}
-          setPage={setPage}
-          score={score}
-          setScore={setScore}
-          startOver={startOver}
-        />
-      );
+      return <Quiz />;
     case "finished":
-      return (
-        <FinalPage
-          score={score}
-          difficulty={difficulty}
-          startOver={startOver}
-        />
-      );
+      return <FinalPage />;
     default:
-      return <IntroPage setDifficulty={setDifficulty} setPage={setPage} />;
+      return <IntroPage />;
   }
 }
