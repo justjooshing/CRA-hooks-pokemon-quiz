@@ -27,11 +27,9 @@ export default function EasyMode({
 
   useEffect(() => {
     if (!answerOptions) {
-      const runGenerateAnswerOptions = async () => {
-        const answerSets = await generatePossibleAnswers(answers, topics);
-        setAnswerOptions(answerSets);
-      };
-      runGenerateAnswerOptions();
+      (async () => {
+        setAnswerOptions(await generatePossibleAnswers(answers, topics));
+      })();
     }
   });
 

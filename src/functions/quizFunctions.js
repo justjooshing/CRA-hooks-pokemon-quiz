@@ -20,25 +20,33 @@ const shuffle = (array) => {
 };
 
 const grabAllPokemon = async () => {
-  const allPokemonFetch = await fetch(
-    "https://pokeapi.co/api/v2/pokemon/?limit=151"
-  );
-  const allPokemonJSON = await allPokemonFetch.json();
+  try {
+    const allPokemonFetch = await fetch(
+      "https://pokeapi.co/api/v2/pokemon/?limit=151"
+    );
+    if (!allPokemonFetch.ok) {
+      const json = await allPokemonFetch.json();
+      throw new Error(json.error);
+    }
+    const allPokemonJSON = await allPokemonFetch.json();
 
-  //Push names only into an array
-  const allPokemonNames = [];
-  allPokemonJSON.results.forEach((pokemon) => {
-    //remove the female and male tags from the nidoran names
-    if (pokemon.name.includes("nidoran")) {
-      pokemon.name = "nidoran";
-    }
-    //remove hyphen from mr mime
-    if (pokemon.name === "mr-mime") {
-      pokemon.name = "mr mime";
-    }
-    allPokemonNames.push(pokemon.name);
-  });
-  return allPokemonNames;
+    //Push names only into an array
+    const allPokemonNames = [];
+    allPokemonJSON.results.forEach((pokemon) => {
+      //remove the female and male tags from the nidoran names
+      if (pokemon.name.includes("nidoran")) {
+        pokemon.name = "nidoran";
+      }
+      //remove hyphen from mr mime
+      if (pokemon.name === "mr-mime") {
+        pokemon.name = "mr mime";
+      }
+      allPokemonNames.push(pokemon.name);
+    });
+    return allPokemonNames;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const generateQuestionTopics = (pokemonQuestions) => {
@@ -62,37 +70,46 @@ export const generatePokemonQuestions = async () => {
     const nameUrl = `https://pokeapi.co/api/v2/pokemon/${number}`;
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
 
-    const singlePokemonResponse = await fetch(nameUrl);
-    const singlePokemonJSON = await singlePokemonResponse.json();
+    try {
+      const singlePokemonResponse = await fetch(nameUrl);
+      if (!singlePokemonResponse.ok) {
+        const json = await singlePokemonResponse.json();
+        throw new Error(json.error);
+      }
+      const singlePokemonJSON = await singlePokemonResponse.json();
 
-    //Grab and assign name
-    pokemon.name = singlePokemonJSON.name;
+      //Grab and assign name
+      pokemon.name = singlePokemonJSON.name;
 
-    //remove the female and male tags from the nidoran names
-    if (pokemon.name.includes("nidoran")) {
-      pokemon.name = "nidoran";
-    }
+      //remove the female and male tags from the nidoran names
+      if (pokemon.name.includes("nidoran")) {
+        pokemon.name = "nidoran";
+      }
 
-    //remove hypen from mr mime
-    if (pokemon.name === "mr-mime") {
-      pokemon.name = "mr mime";
-    }
+      //remove hypen from mr mime
+      if (pokemon.name === "mr-mime") {
+        pokemon.name = "mr mime";
+      }
 
-    //Grab, assign and join type
-    pokemon.type = [];
-    singlePokemonJSON.types.forEach((typeIndex) => {
-      pokemon.type.push(typeIndex.type.name);
-    });
-    pokemon.type = pokemon.type.join("/");
+      //Grab, assign and join type
+      pokemon.type = [];
+      singlePokemonJSON.types.forEach((typeIndex) => {
+        pokemon.type.push(typeIndex.type.name);
+      });
+      pokemon.type = pokemon.type.join("/");
 
-    //Assign url
-    pokemon.image = imageUrl;
+      //Assign url
+      pokemon.image = imageUrl;
 
-    //Assign pokemon to set
-    if (
-      !questionSet.some((pokemonIndex) => pokemonIndex.name === pokemon.name)
-    ) {
-      questionSet.push(pokemon);
+      //Assign pokemon to set
+      if (
+        !questionSet.some((pokemonIndex) => pokemonIndex.name === pokemon.name)
+      ) {
+        questionSet.push(pokemon);
+      }
+    } catch (error) {
+      console.log(error.message);
+      return;
     }
   }
   return questionSet;
@@ -103,43 +120,39 @@ export const capitaliseFirstLetter = (string) => {
 };
 
 export const generatePossibleAnswers = async (answers, topics) => {
-  if (answers) {
-    const runGrabPokemonNames = async () => {
-      const names = await grabAllPokemon();
-      return names;
-    };
+  try {
+    const pokemonNames = await grabAllPokemon();
+    if (answers) {
+      const answerSets = [];
 
-    const answerSets = [];
+      //Generate array of answers
+      const generateAnswers = (selectedPokemon, topic) => {
+        const possibleAnswers = [];
 
-    //Generate array of answers
-    const generateAnswers = (selectedPokemon, topic) => {
-      const possibleAnswers = [];
+        //Add correct type answer
+        possibleAnswers.push(selectedPokemon[topic]);
 
-      //Add correct type answer
-      possibleAnswers.push(selectedPokemon[topic]);
-
-      //Randomly choose 3 of the wrong type answers
-      while (possibleAnswers.length < 4) {
-        const numberOfOptions = topic === "type" ? 37 : 151;
-        const options = topic === "type" ? allTypes : pokemonNames;
-        const num = Math.floor(Math.random() * numberOfOptions);
-        if (!possibleAnswers.includes(options[num])) {
-          possibleAnswers.push(options[num]);
+        //Randomly choose 3 of the wrong type answers
+        while (possibleAnswers.length < 4) {
+          const numberOfOptions = topic === "type" ? 37 : 151;
+          const options = topic === "type" ? allTypes : pokemonNames;
+          const num = Math.floor(Math.random() * numberOfOptions);
+          if (!possibleAnswers.includes(options[num])) {
+            possibleAnswers.push(options[num]);
+          }
         }
-      }
-      answerSets.push(possibleAnswers);
-    };
+        answerSets.push(possibleAnswers);
+      };
 
-    const generateAnswerSets = (selectedPokemon, index) => {
-      const topic = topics[index];
-      generateAnswers(selectedPokemon, topic);
-    };
-    const pokemonNames = await runGrabPokemonNames();
-    answers.forEach((selectedPokemon, index) => {
-      generateAnswerSets(selectedPokemon, index);
-    });
+      answers.forEach((selectedPokemon, index) => {
+        generateAnswers(selectedPokemon, topics[index]);
+      });
 
-    answerSets.forEach((roundOptions) => shuffle(roundOptions));
-    return answerSets;
+      answerSets.forEach((roundOptions) => shuffle(roundOptions));
+      return answerSets;
+    }
+  } catch (error) {
+    console.log(error.message);
+    return;
   }
 };
