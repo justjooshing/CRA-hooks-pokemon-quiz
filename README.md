@@ -1,3 +1,5 @@
+Currently hosted at www.gdayjosho.com
+
 ## Pokemon Quiz
 
 A rebuilt version ES6 of the pokemon quiz app that I made, using create-react-app, React hooks, and Redux this time, instead of class-based components.
