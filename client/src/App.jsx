@@ -4,7 +4,6 @@ import IntroPage from "./components/intro-page/IntroPage";
 import InstructionsPage from "./components/instructions-page/InstructionsPage";
 import Quiz from "./components/quiz/Quiz";
 import FinalPage from "./components/final-page/FinalPage";
-// import Scoreboard from "./Scoreboard";
 
 import "./App.css";
 

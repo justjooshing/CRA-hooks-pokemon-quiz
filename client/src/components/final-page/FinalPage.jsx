@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
 import StartOverButton from "./StartOverButton";
+import Scoreboard from "../scoreboard/Scoreboard";
 
 import "./FinalPage.css";
 
@@ -15,7 +16,10 @@ export default function FinalPage() {
 
   return (
     <div>
-      <h1 className="final_page_score">{score}/10</h1>
+      <h1 className="final_page_score">
+        {score}
+        {difficulty === "infinite" ? null : "/10"}
+      </h1>
       <div className="final_page_image_wrapper">
         <img
           className="final_page_image"
@@ -32,6 +36,7 @@ export default function FinalPage() {
         </p>
       </div>
       <StartOverButton />
+      <Scoreboard />
     </div>
   );
 }

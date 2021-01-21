@@ -8,4 +8,4 @@ function writeDataToFile(fileName, content) {
   });
 }
 
-module.exports = writeDataToFile;
+module.exports = { writeDataToFile };
