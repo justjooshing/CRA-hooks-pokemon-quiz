@@ -1,4 +1,6 @@
 const express = require("express");
+const path = require("path");
+
 let easyHighScores = require("./easyHighScores.json");
 const { writeDataToFile } = require("./utils");
 
@@ -7,6 +9,8 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, "client", "public")));
 
 app.get("/api/names", (req, res) => {
   res.json({ scores: easyHighScores });
