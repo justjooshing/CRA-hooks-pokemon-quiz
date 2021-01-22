@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "client", "public")));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.get("/api/names", (req, res) => {
   res.json({ scores: easyHighScores });
