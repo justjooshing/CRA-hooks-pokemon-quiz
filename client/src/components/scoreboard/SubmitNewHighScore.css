@@ -1,0 +1,62 @@
+.high_score__wrapper {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  margin: 2em;
+}
+.high_score__header {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: var(--secondary-text-font);
+}
+
+.high_score__form {
+  text-align: center;
+  padding-top: 1em;
+}
+
+.high_score__button-wrapper {
+  padding: 1em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.high_score__button {
+  background: var(--poke-red);
+  cursor: pointer;
+  padding: 0.8em;
+  cursor: pointer;
+}
+
+.high_score__button-text {
+  font-family: var(--main-text-font);
+  color: white;
+  animation: blink 1.5s infinite;
+}
+
+input[type="text"] {
+  font-family: var(--secondary-text-font);
+  background-color: transparent;
+  border-radius: 0px;
+  border-bottom: 2px solid black;
+  font-size: 2em;
+  margin: 0 5px;
+  width: 2.5rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+input[type="text"]:focus {
+  color: transparent;
+  text-shadow: 0 0 0 black;
+  animation: blinkScoreInput 1.5s infinite;
+}
+
+@keyframes blinkScoreInput {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

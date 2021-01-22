@@ -46,7 +46,7 @@ export default function Test() {
 
   return (
     <div>
-      {/* <SubmitNewHighScore postData={postData} updateName={updateName} /> */}
+      <SubmitNewHighScore postData={postData} updateName={updateName} />
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
       <TopThreeScores allScores={allScores} />
     </div>
