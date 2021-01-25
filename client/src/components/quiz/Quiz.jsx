@@ -37,6 +37,11 @@ export default function Quiz() {
     }
   }, [pokemonQuestions]);
 
+  useEffect(() => {
+    console.log(round);
+    window.scrollTo(0, 0);
+  }, [round]);
+
   if (allUpdated) {
     return (
       <>
