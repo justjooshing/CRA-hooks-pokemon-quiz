@@ -6,6 +6,7 @@ import PokemonImage from "./PokemonImage";
 import Question from "./Question";
 import EasyMode from "./EasyMode/EasyMode";
 import HardMode from "./HardMode/HardMode";
+import InfiniteMode from "./InfiniteMode/InfiniteMode";
 import LoadingScreen from "./LoadingScreen";
 
 import {
@@ -17,25 +18,46 @@ export default function Quiz() {
   const [pokemonQuestions, setPokemonQuestions] = useState(null);
   const [questionTopics, setQuestionTopics] = useState();
   const [round, setRound] = useState(0);
+  const [numberOfRounds, setNumberOfRounds] = useState(10);
   const [whichButton, setWhichButton] = useState("skip");
 
   const difficulty = useSelector((state) => state.difficulty);
-  // "infinite";
   const allUpdated = pokemonQuestions && questionTopics;
 
+  //Set inital questions
   useEffect(() => {
     if (pokemonQuestions) {
       setQuestionTopics(generateQuestionTopics(pokemonQuestions));
     } else if (!pokemonQuestions) {
       (async () => {
         try {
-          setPokemonQuestions(await generatePokemonQuestions());
+          setPokemonQuestions(await generatePokemonQuestions(10));
         } catch (error) {
           console.log(error.message);
         }
       })();
     }
   }, [pokemonQuestions]);
+
+  //Add extra rounds for infinite mode
+  useEffect(() => {
+    if (difficulty === "infinite") {
+      setNumberOfRounds(numberOfRounds + 1);
+      console.log("infinite");
+      (async () => {
+        try {
+          setPokemonQuestions(
+            await generatePokemonQuestions(numberOfRounds, pokemonQuestions)
+          );
+          setQuestionTopics(
+            generateQuestionTopics(pokemonQuestions, questionTopics)
+          );
+        } catch (error) {
+          console.log(error.message);
+        }
+      })();
+    }
+  }, [round]);
 
   //when round updates, scroll to top
   useEffect(() => {
@@ -68,7 +90,9 @@ export default function Quiz() {
             whichButton={whichButton}
             setWhichButton={setWhichButton}
           />
-        ) : null}
+        ) : (
+          <InfiniteMode />
+        )}
       </>
     );
   } else {

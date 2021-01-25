@@ -11,6 +11,10 @@ export default function Modes() {
       difficulty: "hard",
       button_text: "For experienced pokemon masters",
     },
+    // {
+    //   difficulty: "infinite",
+    //   button_text: "Try and beat the current Victory Road champions",
+    // },
   ];
 
   return (

@@ -49,8 +49,7 @@ const grabAllPokemon = async () => {
   }
 };
 
-export const generateQuestionTopics = (pokemonQuestions) => {
-  const answerTopics = [];
+export const generateQuestionTopics = (pokemonQuestions, answerTopics = []) => {
   for (let i = 0; i < pokemonQuestions.length; i++) {
     const questionTopic = ["name", "type"];
     const chosenTopic = questionTopic[Math.floor(Math.random() * 2)];
@@ -59,10 +58,10 @@ export const generateQuestionTopics = (pokemonQuestions) => {
   return answerTopics;
 };
 
-export const generatePokemonQuestions = async () => {
-  const numberOfPokemon = 10;
-  const questionSet = [];
-
+export const generatePokemonQuestions = async (
+  numberOfPokemon,
+  questionSet = []
+) => {
   //grab n (10) number of pokemon from the API
   while (questionSet.length < numberOfPokemon) {
     const number = Math.floor(Math.random() * 151) + 1;

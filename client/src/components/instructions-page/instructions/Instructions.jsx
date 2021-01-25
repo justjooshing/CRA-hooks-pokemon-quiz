@@ -20,6 +20,14 @@ export default function Instructions() {
       "Read the question carefully.",
       "Submit your answer in the textbox provided.",
     ],
+    infinite: [
+      "There are an infinte number of questions.",
+      "Well... techincally 300.",
+      "You will be shown a picture of a pokemon and a question.",
+      "Read the question carefully.",
+      "If you get one wrong, game over.",
+      "Submit your answer in the textbox provided.",
+    ],
   };
 
   return (
