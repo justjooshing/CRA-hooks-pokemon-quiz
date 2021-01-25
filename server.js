@@ -17,7 +17,6 @@ app.get("/api/names", (req, res) => {
 });
 
 app.post("/api/names", (req, res) => {
-  console.log(req.body);
   const { score, name } = req.body;
   if (score && name) {
     easyHighScores.push({ name, score });
