@@ -34,7 +34,7 @@
   animation: blink 1.5s infinite;
 }
 
-input[type="text"] {
+.high_score__letter-input {
   font-family: var(--secondary-text-font);
   background-color: transparent;
   border-radius: 0px;
@@ -46,7 +46,7 @@ input[type="text"] {
   text-transform: capitalize;
 }
 
-input[type="text"]:focus {
+.high_score__letter-input:focus {
   color: transparent;
   text-shadow: 0 0 0 black;
   animation: blinkScoreInput 1.5s infinite;

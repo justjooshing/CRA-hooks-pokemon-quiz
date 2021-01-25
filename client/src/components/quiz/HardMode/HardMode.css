@@ -6,7 +6,6 @@
 }
 
 .answer_input_wrapper {
-  padding-top: 30px;
-  margin: 0em 5em;
+  margin-top: 30px;
   font-family: var(--secondary-text-font);
 }
