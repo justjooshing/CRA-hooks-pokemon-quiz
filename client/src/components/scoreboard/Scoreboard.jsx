@@ -9,10 +9,18 @@ import("./Scoreboard.css");
 export default function Test() {
   const [allScores, updateAllScores] = useState();
   const [name, updateName] = useState("");
+  const [newScoreAdded, updateNewScoreAdded] = useState(false);
   const score = useSelector((state) => state.score);
   const difficulty = useSelector((state) => state.difficulty);
 
   //API REQUESTS
+
+  const getData = async () => {
+    const response = await fetch("/api/names");
+    const body = await response.json();
+    updateAllScores(body.scores);
+  };
+
   const postNewScore = {
     method: "POST",
     headers: {
@@ -21,21 +29,10 @@ export default function Test() {
     body: JSON.stringify({ score, name, difficulty }),
   };
 
-  const getData = async () => {
-    const response = await fetch("/api/names");
-    const body = await response.json();
-    console.log("got!");
+  const postData = async () => {
+    const response = await fetch("/api/names", postNewScore);
+    const body = await response.text();
     updateAllScores(body.scores);
-  };
-
-  const postData = async (e) => {
-    e.preventDefault();
-    if (name) {
-      const response = await fetch("/api/names", postNewScore);
-      const body = await response.text();
-      updateAllScores(body.scores);
-      e.target.reset();
-    } else alert("Please write your name to submit a score");
   };
 
   useEffect(() => {
@@ -44,9 +41,21 @@ export default function Test() {
     }
   });
 
+  //Run post data only once name is added
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (name) {
+      postData();
+      updateNewScoreAdded(true);
+      updateName("");
+    }
+  });
+
   return (
     <div>
-      <SubmitNewHighScore postData={postData} updateName={updateName} />
+      {!newScoreAdded && (
+        <SubmitNewHighScore postData={postData} updateName={updateName} />
+      )}
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
       <TopThreeScores allScores={allScores} />
     </div>
