@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const { nanoid } = require("nanoid");
 
 let infiniteModeHighScores = require("./highScores/infiniteModeHighScores.json");
 const { writeDataToFile } = require("./utils");
@@ -19,7 +20,8 @@ app.get("/api/names", (req, res) => {
 app.post("/api/names", (req, res) => {
   const { score, name } = req.body;
   if (score && name) {
-    infiniteModeHighScores.push({ name, score });
+    const id = nanoid(10);
+    infiniteModeHighScores.push({ name, score, id });
   }
   //Order them by score highest to lowest
   infiniteModeHighScores.sort((a, b) =>

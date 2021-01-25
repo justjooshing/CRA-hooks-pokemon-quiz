@@ -15,12 +15,6 @@ export default function Test() {
 
   //API REQUESTS
 
-  const getData = async () => {
-    const response = await fetch("/api/names");
-    const body = await response.json();
-    updateAllScores(body.scores);
-  };
-
   const postNewScore = {
     method: "POST",
     headers: {
@@ -34,12 +28,6 @@ export default function Test() {
     const body = await response.text();
     updateAllScores(body.scores);
   };
-
-  useEffect(() => {
-    if (!allScores) {
-      getData();
-    }
-  });
 
   //Run post data only once name is added
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +45,7 @@ export default function Test() {
         <SubmitNewHighScore postData={postData} updateName={updateName} />
       )}
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
-      <TopThreeScores allScores={allScores} />
+      <TopThreeScores allScores={allScores} updateAllScores={updateAllScores} />
     </div>
   );
 }

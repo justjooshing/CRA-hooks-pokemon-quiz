@@ -1,10 +1,22 @@
-import React from "react";
+import { useEffect } from "react";
 
 import IndividualScore from "./IndividualScore";
 
 import("./TopThreeScores.css");
 
-export default function TopThreeScores({ allScores }) {
+export default function TopThreeScores({ allScores, updateAllScores }) {
+  const getData = async () => {
+    const response = await fetch("/api/names");
+    const body = await response.json();
+    updateAllScores(body.scores);
+  };
+
+  useEffect(() => {
+    if (!allScores) {
+      getData();
+    }
+  });
+
   return (
     <ul className="leaderboard__scores-list">
       {allScores
@@ -12,7 +24,7 @@ export default function TopThreeScores({ allScores }) {
             return (
               <li
                 className="leaderboard__scores-list-items"
-                key={`${eachScore.name}:${eachScore.score}`}
+                key={`${eachScore.id}`}
               >
                 <IndividualScore
                   ranking={index + 1}
