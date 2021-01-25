@@ -50,11 +50,11 @@ const grabAllPokemon = async () => {
 };
 
 export const generateQuestionTopics = (pokemonQuestions, answerTopics = []) => {
-  pokemonQuestions.forEach(() => {
+  while (answerTopics.length < pokemonQuestions.length) {
     const questionTopic = ["name", "type"];
     const chosenTopic = questionTopic[Math.floor(Math.random() * 2)];
     answerTopics.push(chosenTopic);
-  });
+  }
   return answerTopics;
 };
 
