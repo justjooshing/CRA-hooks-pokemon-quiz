@@ -12,7 +12,6 @@ import {
 
 export default function FinalPage() {
   const difficulty = useSelector((state) => state.difficulty);
-  //"infinite";
   const score = useSelector((state) => state.score);
 
   return (

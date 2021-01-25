@@ -20,7 +20,7 @@ export default function Quiz() {
   const [whichButton, setWhichButton] = useState("skip");
 
   const difficulty = useSelector((state) => state.difficulty);
-
+  // "infinite";
   const allUpdated = pokemonQuestions && questionTopics;
 
   useEffect(() => {
@@ -37,8 +37,8 @@ export default function Quiz() {
     }
   }, [pokemonQuestions]);
 
+  //when round updates, scroll to top
   useEffect(() => {
-    console.log(round);
     window.scrollTo(0, 0);
   }, [round]);
 
@@ -59,7 +59,7 @@ export default function Quiz() {
             whichButton={whichButton}
             setWhichButton={setWhichButton}
           />
-        ) : (
+        ) : difficulty === "hard" ? (
           <HardMode
             pokemon={pokemonQuestions[round]}
             topic={questionTopics[round]}
@@ -68,7 +68,7 @@ export default function Quiz() {
             whichButton={whichButton}
             setWhichButton={setWhichButton}
           />
-        )}
+        ) : null}
       </>
     );
   } else {
