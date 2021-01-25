@@ -37,6 +37,7 @@ export default function SubmitScore({ updateName }) {
         {Object.values(inputLetters).map((letter, index) => {
           return (
             <input
+              className="high_score__letter-input"
               type="text"
               maxLength="1"
               key={index}
