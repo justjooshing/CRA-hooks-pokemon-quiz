@@ -19,10 +19,13 @@ export default function SubmitScore({ updateName }) {
   };
 
   const handleChange = (e, index) => {
-    updateInputLetters({
-      ...inputLetters,
-      [`letter_${index}`]: e.target.value,
-    });
+    const trimmed = e.target.value.trim();
+    if (trimmed) {
+      updateInputLetters({
+        ...inputLetters,
+        [`letter_${index}`]: e.target.value,
+      });
+    }
     if (e.target.value.length) {
       e.target.nextSibling.focus();
     } else if (!e.target.value && index > 0) {
@@ -42,7 +45,7 @@ export default function SubmitScore({ updateName }) {
               maxLength="1"
               key={index}
               onClick={(e) => e.target.focus()}
-              onChange={(e) => handleChange(e, index)}
+              onKeyUp={(e) => handleChange(e, index)}
             />
           );
         })}
