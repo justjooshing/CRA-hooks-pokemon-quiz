@@ -2,48 +2,30 @@ import { useSelector } from "react-redux";
 
 import StartOverButton from "./StartOverButton";
 import Scoreboard from "../scoreboard/Scoreboard";
+import StandardFinalPage from "./StandardFinalPage";
 
 import "./FinalPage.css";
-
-import {
-  finalPagePictureToDisplay,
-  finalPageTextToDisplay,
-} from "../../functions/finalPageFunctions";
 
 export default function FinalPage() {
   const difficulty = useSelector((state) => state.difficulty);
   const score = useSelector((state) => state.score);
 
+  const standard = difficulty === "easy" || difficulty === "hard";
+
   return (
     <div>
-      {difficulty === "easy" || difficulty === "hard" ? (
-        <>
-          <h1 className="final_page_score">
-            {score}
-            {difficulty === "infinite" ? null : "/10"}
-          </h1>
-          <div className="final_page_image_wrapper">
-            <img
-              className="final_page_image"
-              src={finalPagePictureToDisplay(score).fileName}
-              alt={finalPagePictureToDisplay(score).altText}
-            />
-          </div>
-          <div>
-            <p className="final_page_text_paragraph">
-              {finalPageTextToDisplay(difficulty, score).exclamation}
-            </p>
-            <p className="final_page_text_paragraph">
-              {finalPageTextToDisplay(difficulty, score).text}
-            </p>
-          </div>
-          <StartOverButton />
-        </>
+      <h1 className="final_page_score">
+        {score}
+        {difficulty === "infinite" ? null : "/10"}
+      </h1>
+      {standard ? (
+        <StandardFinalPage score={score} difficulty={difficulty} />
       ) : (
         <>
           <Scoreboard />
         </>
       )}
+      <StartOverButton />
     </div>
   );
 }

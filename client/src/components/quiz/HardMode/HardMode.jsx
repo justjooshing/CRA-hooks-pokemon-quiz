@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { setScore, setPage } from "../../../actions";
+import { checkTempAnswer } from "../../../functions/quizFunctions";
 
 import TypeDirective from "./TypeDirective";
 import AnswerInput from "./AnswerInput";
@@ -51,19 +52,11 @@ export default function HardMode({
 
   const addScore = () => {
     let holdTempAnswer = tempSubmittedAnswer;
-
-    if (holdTempAnswer === "farfetch'd") {
-      holdTempAnswer = "farfetchd";
-    }
-    if (holdTempAnswer === correctAnswer) {
+    const result = checkTempAnswer(holdTempAnswer, correctAnswer);
+    if (result.valid) {
       dispatch(setScore());
-    } else if (holdTempAnswer.includes("/")) {
-      holdTempAnswer = holdTempAnswer.split("/").reverse().join("/");
-      if (holdTempAnswer === correctAnswer) {
-        dispatch(setScore());
-      }
     }
-    setSubmittedAnswer(holdTempAnswer);
+    setSubmittedAnswer(result.holdTempAnswer);
   };
 
   return (

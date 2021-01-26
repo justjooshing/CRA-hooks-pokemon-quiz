@@ -155,3 +155,19 @@ export const generatePossibleAnswers = async (answers, topics) => {
     return;
   }
 };
+
+export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
+  if (holdTempAnswer === "farfetch'd") {
+    holdTempAnswer = "farfetchd";
+  }
+  if (holdTempAnswer === correctAnswer) {
+    return { holdTempAnswer, valid: true };
+  } else if (holdTempAnswer.includes("/")) {
+    holdTempAnswer = holdTempAnswer.split("/").reverse().join("/");
+    if (holdTempAnswer === correctAnswer) {
+      return { holdTempAnswer, valid: true };
+    }
+  } else {
+    return { holdTempAnswer, valid: false };
+  }
+};

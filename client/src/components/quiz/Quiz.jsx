@@ -43,7 +43,6 @@ export default function Quiz() {
   useEffect(() => {
     if (difficulty === "infinite") {
       setNumberOfRounds(numberOfRounds + 1);
-      console.log("infinite");
       (async () => {
         try {
           setPokemonQuestions(
@@ -91,7 +90,14 @@ export default function Quiz() {
             setWhichButton={setWhichButton}
           />
         ) : (
-          <InfiniteMode />
+          <InfiniteMode
+            pokemon={pokemonQuestions[round]}
+            topic={questionTopics[round]}
+            round={round}
+            setRound={setRound}
+            whichButton={whichButton}
+            setWhichButton={setWhichButton}
+          />
         )}
       </>
     );

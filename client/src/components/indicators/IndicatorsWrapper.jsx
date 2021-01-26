@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetGame } from "../../actions";
 import ModeIndicator from "./ModeIndicator";
 
 import "./IndicatorsWrapper.css";
 
 export default function IndicatorsWrapper({ round }) {
+  const difficulty = useSelector((state) => state.difficulty);
+  const totalRounds = difficulty === "infinite" ? "" : "/10";
   const dispatch = useDispatch();
   return (
     <div className="indicators_wrapper">
@@ -12,7 +14,7 @@ export default function IndicatorsWrapper({ round }) {
       <button className="title_button" onClick={() => dispatch(resetGame(0))}>
         Ultimate Pokemon Quiz
       </button>
-      <div className="round_indicator">{`${round + 1}/10`}</div>
+      <div className="round_indicator">{`${round + 1}${totalRounds}`}</div>
     </div>
   );
 }

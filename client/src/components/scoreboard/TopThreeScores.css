@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   list-style: none;
-  padding-bottom: 1em;
 }
 
 .leaderboard__scores-list-items {
