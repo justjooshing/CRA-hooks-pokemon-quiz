@@ -11,7 +11,7 @@ import ConfirmButton from "../ConfirmButton";
 
 import "../HardMode/HardMode.css";
 
-export default function HardMode({
+export default function InfiniteMode({
   pokemon,
   topic,
   round,
