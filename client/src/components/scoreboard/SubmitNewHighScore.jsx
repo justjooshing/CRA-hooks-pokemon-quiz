@@ -14,18 +14,19 @@ export default function SubmitScore({ updateName }) {
     const name = Object.values(inputLetters).reduce((res, value) =>
       res.concat(value).toUpperCase()
     );
-    e.target.reset();
-    updateName(name);
+    const regex = /\w{3}/;
+    const check = regex.test(name);
+    if (check) {
+      e.target.reset();
+      updateName(name);
+    }
   };
 
   const handleChange = (e, index) => {
-    const trimmed = e.target.value.trim();
-    if (trimmed) {
-      updateInputLetters({
-        ...inputLetters,
-        [`letter_${index}`]: e.target.value,
-      });
-    }
+    updateInputLetters({
+      ...inputLetters,
+      [`letter_${index}`]: e.target.value,
+    });
     if (e.target.value.length) {
       e.target.nextSibling.focus();
     } else if (!e.target.value && index > 0) {
