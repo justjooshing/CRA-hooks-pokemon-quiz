@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import SubmitNewHighScore from "./SubmitNewHighScore";
@@ -6,15 +6,24 @@ import TopThreeScores from "./TopThreeScores";
 
 import("./Scoreboard.css");
 
-export default function Test() {
+export default function Scoreboard({ updateIsHighScore }) {
   const [allScores, updateAllScores] = useState();
   const [name, updateName] = useState("");
   const [newScoreAdded, updateNewScoreAdded] = useState(false);
   const score = useSelector((state) => state.score);
   const difficulty = useSelector((state) => state.difficulty);
 
-  //API REQUESTS
+  const newHighScore = (newScore) => {
+    const result = allScores.some(({ score }) => newScore > score);
+    if (result) {
+      updateIsHighScore(true);
+    }
+    return result;
+  };
 
+  const ableToAddNewScore = !newScoreAdded && allScores && newHighScore(score);
+
+  //API REQUESTS
   const postNewScore = {
     method: "POST",
     headers: {
@@ -29,23 +38,24 @@ export default function Test() {
     updateAllScores(body.scores);
   };
 
+  const steadyPostData = useCallback(postData, [postData]);
+
   //Run post data only once name is added
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (name) {
-      postData();
+      steadyPostData();
       updateNewScoreAdded(true);
       updateName("");
     }
-  });
+  }, [steadyPostData, name]);
 
   return (
-    <div>
-      {!newScoreAdded && (
+    <>
+      {ableToAddNewScore && (
         <SubmitNewHighScore postData={postData} updateName={updateName} />
       )}
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
       <TopThreeScores allScores={allScores} updateAllScores={updateAllScores} />
-    </div>
+    </>
   );
 }
