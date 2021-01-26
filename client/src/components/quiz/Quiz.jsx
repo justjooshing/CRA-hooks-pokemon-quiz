@@ -56,7 +56,7 @@ export default function Quiz() {
         }
       })();
     }
-  }, [round]);
+  }, [round, setNumberOfRounds, difficulty]);
 
   //when round updates, scroll to top
   useEffect(() => {
