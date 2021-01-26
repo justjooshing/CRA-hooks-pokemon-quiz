@@ -28,7 +28,7 @@ export default function Quiz() {
   useEffect(() => {
     if (pokemonQuestions) {
       setQuestionTopics(generateQuestionTopics(pokemonQuestions));
-    } else if (!pokemonQuestions) {
+    } else {
       (async () => {
         try {
           setPokemonQuestions(await generatePokemonQuestions(10));
