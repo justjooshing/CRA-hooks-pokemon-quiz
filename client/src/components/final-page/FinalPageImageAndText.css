@@ -1,0 +1,7 @@
+.final_page_text_paragraph {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.3em;
+  font-family: var(--main-text-font);
+  line-height: 1.5em;
+}

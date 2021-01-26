@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import StartOverButton from "./StartOverButton";
 import Scoreboard from "../scoreboard/Scoreboard";
-import StandardFinalPage from "./StandardFinalPage";
+import FinalPageImageAndText from "./FinalPageImageAndText";
 
 import "./FinalPage.css";
 
 export default function FinalPage() {
+  const [isHighScore, updateIsHighScore] = useState(false);
+
   const difficulty = useSelector((state) => state.difficulty);
   const score = useSelector((state) => state.score);
 
@@ -18,13 +21,8 @@ export default function FinalPage() {
         {score}
         {difficulty === "infinite" ? null : "/10"}
       </h1>
-      {standard ? (
-        <StandardFinalPage score={score} difficulty={difficulty} />
-      ) : (
-        <>
-          <Scoreboard />
-        </>
-      )}
+      <FinalPageImageAndText score={score} isHighScore={isHighScore} />
+      {!standard && <Scoreboard updateIsHighScore={updateIsHighScore} />}
       <StartOverButton />
     </div>
   );
