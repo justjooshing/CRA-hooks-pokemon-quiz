@@ -51,7 +51,7 @@ export default function HardMode({
   };
 
   const addScore = () => {
-    let holdTempAnswer = tempSubmittedAnswer;
+    let holdTempAnswer = tempSubmittedAnswer.toLowerCase();
     const result = checkTempAnswer(holdTempAnswer, correctAnswer);
     if (result.valid) {
       dispatch(setScore());
