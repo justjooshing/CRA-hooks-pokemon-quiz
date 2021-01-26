@@ -2,18 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .title_button {
-  display: flex;
-  margin: 0em 1em;
-  text-decoration: none;
   color: white;
-  text-align: center;
   background: var(--poke-blue);
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .round_indicator {
