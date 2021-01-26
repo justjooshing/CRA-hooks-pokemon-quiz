@@ -166,6 +166,8 @@ export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
     holdTempAnswer = holdTempAnswer.split("/").reverse().join("/");
     if (holdTempAnswer === correctAnswer) {
       return { holdTempAnswer, valid: true };
+    } else {
+      return { holdTempAnswer, valid: false };
     }
   } else {
     return { holdTempAnswer, valid: false };

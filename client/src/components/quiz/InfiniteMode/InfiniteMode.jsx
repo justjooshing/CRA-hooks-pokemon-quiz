@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setScore, setPage } from "../../../actions";
 import { checkTempAnswer } from "../../../functions/quizFunctions";
 
-import TypeDirective from "../HardMode//TypeDirective";
+import TypeDirective from "../HardMode/TypeDirective";
 import AnswerInput from "../HardMode/AnswerInput";
 import CorrectAnswer from "../HardMode/CorrectAnswer";
 import ConfirmButton from "../ConfirmButton";
