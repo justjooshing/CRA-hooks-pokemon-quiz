@@ -1,20 +1,38 @@
 import seven_and_up from "../images/final_page/pokemon_ash_final_page_image.jpg";
 import under_seven from "../images/final_page/pikachu_under_7.jpg";
 import under_four from "../images/final_page/pikachu_under_4.jpg";
+import newHighScore from "../images/final_page/surprised_pikachu.jpg";
+import noNewHighScore from "../images/final_page/pikachu_refuse.png";
 
-export const finalPagePictureToDisplay = (score) => {
-  if (score < 4) {
-    return { fileName: under_four, altText: "pikachu defeated" };
-  } else if (score < 7) {
-    return {
-      fileName: under_seven,
-      altText: "pikachu looking confused",
-    };
-  } else if (score >= 7) {
-    return {
-      fileName: seven_and_up,
-      altText: "ash from pokemon success image",
-    };
+export const finalPagePictureToDisplay = (difficulty, score, isHighScore) => {
+  const standard = difficulty === "easy" || difficulty === "hard";
+
+  if (standard) {
+    if (score < 4) {
+      return { fileName: under_four, altText: "pikachu defeated" };
+    } else if (score < 7) {
+      return {
+        fileName: under_seven,
+        altText: "pikachu looking confused",
+      };
+    } else if (score >= 7) {
+      return {
+        fileName: seven_and_up,
+        altText: "ash from pokemon success image",
+      };
+    }
+  } else {
+    if (isHighScore) {
+      return {
+        fileName: newHighScore,
+        altText: "ash from pokemon success image",
+      };
+    } else {
+      return {
+        fileName: noNewHighScore,
+        altText: "pikachu rejecting pokeball",
+      };
+    }
   }
 };
 
