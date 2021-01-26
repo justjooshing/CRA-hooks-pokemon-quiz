@@ -1,1 +1,5 @@
-[{"name":"BBB","score":5,"id":"xn7NiNv63W"},{"name":"SBB","score":5,"id":"jWpkxC-F0x"},{"name":"AAA","score":3,"id":"UumS0-R_qn"}]
+[
+  { "name": "TKB", "score": 89, "id": "xn7NiNv63W" },
+  { "name": "JLM", "score": 54, "id": "jWpkxC-F0x" },
+  { "name": "VAA", "score": 54, "id": "UumS0-R_qn" }
+]
