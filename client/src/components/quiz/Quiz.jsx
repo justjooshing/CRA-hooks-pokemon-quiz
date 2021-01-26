@@ -5,8 +5,7 @@ import IndicatorsWrapper from "../indicators/IndicatorsWrapper";
 import PokemonImage from "./PokemonImage";
 import Question from "./Question";
 import EasyMode from "./EasyMode/EasyMode";
-import HardMode from "./HardMode/HardMode";
-import InfiniteMode from "./InfiniteMode/InfiniteMode";
+import UserInputMode from "./UserInputMode/UserInputMode";
 import LoadingScreen from "./LoadingScreen";
 
 import {
@@ -80,17 +79,8 @@ export default function Quiz() {
             whichButton={whichButton}
             setWhichButton={setWhichButton}
           />
-        ) : difficulty === "hard" ? (
-          <HardMode
-            pokemon={pokemonQuestions[round]}
-            topic={questionTopics[round]}
-            round={round}
-            setRound={setRound}
-            whichButton={whichButton}
-            setWhichButton={setWhichButton}
-          />
         ) : (
-          <InfiniteMode
+          <UserInputMode
             pokemon={pokemonQuestions[round]}
             topic={questionTopics[round]}
             round={round}

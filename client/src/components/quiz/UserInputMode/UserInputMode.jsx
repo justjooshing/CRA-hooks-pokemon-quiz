@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setScore, setPage } from "../../../actions";
 import { checkTempAnswer } from "../../../functions/quizFunctions";
 
-import TypeDirective from "../HardMode/TypeDirective";
-import AnswerInput from "../HardMode/AnswerInput";
-import CorrectAnswer from "../HardMode/CorrectAnswer";
+import TypeDirective from "./TypeDirective";
+import AnswerInput from "./AnswerInput";
+import CorrectAnswer from "./CorrectAnswer";
 import ConfirmButton from "../ConfirmButton";
 
-import "../HardMode/HardMode.css";
+import "./UserInputMode.css";
 
-export default function InfiniteMode({
+export default function UserInputMode({
   pokemon,
   topic,
   round,
@@ -19,12 +19,13 @@ export default function InfiniteMode({
   whichButton,
   setWhichButton,
 }) {
+  const dispatch = useDispatch();
+  const difficulty = useSelector((state) => state.difficulty);
+
   const [tempSubmittedAnswer, setTempSubmittedAnswer] = useState("");
   const [submittedAnswer, setSubmittedAnswer] = useState("");
   const [stillPlaying, setStillPlaying] = useState(true);
   const correctAnswer = pokemon[topic];
-
-  const dispatch = useDispatch();
 
   const updateTempAnswer = (e) => {
     setTempSubmittedAnswer(e.target.value);
@@ -35,18 +36,33 @@ export default function InfiniteMode({
       setWhichButton("next");
     } else if (tempSubmittedAnswer) {
       setWhichButton("confirm");
+    } else if (difficulty === "hard") {
+      setWhichButton("skip");
     }
-  }, [submittedAnswer, tempSubmittedAnswer]);
+  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton]);
 
   const resetForNextQuestion = () => {
-    if (whichButton === "skip" || !stillPlaying) {
-      setStillPlaying(false);
-      dispatch(setPage("finished"));
-    } else {
-      setRound(round + 1);
+    const runOthers = () => {
       setWhichButton("skip");
       setTempSubmittedAnswer("");
       setSubmittedAnswer("");
+    };
+
+    if (difficulty === "infinite") {
+      if (whichButton === "skip" || !stillPlaying) {
+        setStillPlaying(false);
+        dispatch(setPage("finished"));
+      } else {
+        setRound(round + 1);
+        runOthers();
+      }
+    } else if (difficulty === "hard") {
+      if (round < 9) {
+        setRound(round + 1);
+      } else {
+        dispatch(setPage("finished"));
+      }
+      runOthers();
     }
   };
 
@@ -55,7 +71,7 @@ export default function InfiniteMode({
     const result = checkTempAnswer(holdTempAnswer, correctAnswer);
     if (result.valid) {
       dispatch(setScore());
-    } else {
+    } else if (difficulty === "infinite") {
       setStillPlaying(false);
     }
     setSubmittedAnswer(result.holdTempAnswer);
