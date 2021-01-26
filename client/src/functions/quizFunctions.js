@@ -160,6 +160,9 @@ export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
   if (holdTempAnswer === "farfetch'd") {
     holdTempAnswer = "farfetchd";
   }
+  if (holdTempAnswer === "Mr Mime.") {
+    holdTempAnswer = "Mr Mime";
+  }
   if (holdTempAnswer === correctAnswer) {
     return { holdTempAnswer, valid: true };
   } else if (holdTempAnswer.includes("/")) {
