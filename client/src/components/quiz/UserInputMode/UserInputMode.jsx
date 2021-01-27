@@ -39,7 +39,7 @@ export default function UserInputMode({
     } else if (difficulty === "hard") {
       setWhichButton("skip");
     }
-  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton]);
+  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton, difficulty]);
 
   const resetForNextQuestion = () => {
     const runOthers = () => {
