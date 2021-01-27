@@ -16,5 +16,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  max-width: 35em;
   justify-content: space-evenly;
 }
