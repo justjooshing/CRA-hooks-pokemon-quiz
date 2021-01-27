@@ -13,7 +13,7 @@ export default function FinalPageImageAndText({ score, isHighScore }) {
   const standard = difficulty === "easy" || difficulty === "hard";
 
   return (
-    <>
+    <section>
       <div className="final_page_image_wrapper">
         <img
           className="final_page_image"
@@ -25,7 +25,7 @@ export default function FinalPageImageAndText({ score, isHighScore }) {
           }
         />
       </div>
-      <div>
+      <>
         {standard && (
           <>
             <p className="final_page_text_paragraph">
@@ -36,7 +36,7 @@ export default function FinalPageImageAndText({ score, isHighScore }) {
             </p>
           </>
         )}
-      </div>
-    </>
+      </>
+    </section>
   );
 }

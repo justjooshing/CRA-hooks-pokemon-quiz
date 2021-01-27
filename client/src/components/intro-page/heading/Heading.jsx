@@ -6,7 +6,7 @@ import "./Heading.css";
 
 export default function Heading() {
   return (
-    <div className="heading_wrapper">
+    <section className="heading_wrapper">
       <img
         className="heading_title_images"
         src={headerTitleUltimate}
@@ -18,6 +18,6 @@ export default function Heading() {
         alt="Pokemon"
       />
       <img className="heading_title_quiz" src={headerTitleQuiz} alt="Quiz" />
-    </div>
+    </section>
   );
 }

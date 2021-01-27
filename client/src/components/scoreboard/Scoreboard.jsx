@@ -50,12 +50,12 @@ export default function Scoreboard({ updateIsHighScore }) {
   }, [steadyPostData, name]);
 
   return (
-    <>
+    <section>
       {ableToAddNewScore && (
         <SubmitNewHighScore postData={postData} updateName={updateName} />
       )}
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
       <TopThreeScores allScores={allScores} updateAllScores={updateAllScores} />
-    </>
+    </section>
   );
 }

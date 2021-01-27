@@ -9,12 +9,12 @@ export default function IndicatorsWrapper({ round }) {
   const totalRounds = difficulty === "infinite" ? "" : "/10";
   const dispatch = useDispatch();
   return (
-    <div className="indicators_wrapper">
+    <header className="indicators_wrapper">
       <ModeIndicator />
       <button className="title_button" onClick={() => dispatch(resetGame(0))}>
         Ultimate Pokemon Quiz
       </button>
       <div className="round_indicator">{`${round + 1}${totalRounds}`}</div>
-    </div>
+    </header>
   );
 }

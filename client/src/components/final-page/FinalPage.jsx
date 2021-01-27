@@ -16,7 +16,7 @@ export default function FinalPage() {
   const standard = difficulty === "easy" || difficulty === "hard";
 
   return (
-    <div>
+    <main>
       <h1 className="final_page_score">
         {score}
         {difficulty === "infinite" ? null : "/10"}
@@ -24,6 +24,6 @@ export default function FinalPage() {
       <FinalPageImageAndText score={score} isHighScore={isHighScore} />
       {!standard && <Scoreboard updateIsHighScore={updateIsHighScore} />}
       <StartOverButton />
-    </div>
+    </main>
   );
 }

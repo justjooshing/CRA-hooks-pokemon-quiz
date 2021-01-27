@@ -18,7 +18,7 @@ export default function Modes() {
   ];
 
   return (
-    <div className="modes_wrapper">
+    <section className="modes_wrapper">
       {Object.values(modes).map((mode, index) => (
         <ModeButton
           key={mode.difficulty}
@@ -26,6 +26,6 @@ export default function Modes() {
           button_text={mode.button_text}
         />
       ))}
-    </div>
+    </section>
   );
 }

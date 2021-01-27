@@ -31,12 +31,12 @@ export default function Instructions() {
   };
 
   return (
-    <div className="instructions_wrapper">
+    <section className="instructions_wrapper">
       {instructions[difficulty].map((line, index) => (
         <p className="instructions_lines" key={index}>
           {line}
         </p>
       ))}
-    </div>
+    </section>
   );
 }

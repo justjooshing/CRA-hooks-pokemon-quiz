@@ -66,29 +66,31 @@ export default function Quiz() {
     return (
       <>
         <IndicatorsWrapper round={round} />
-        <PokemonImage pokemon={pokemonQuestions[round]} />
-        <Question topic={questionTopics[round]} />
+        <main>
+          <PokemonImage pokemon={pokemonQuestions[round]} />
+          <Question topic={questionTopics[round]} />
 
-        {difficulty === "easy" ? (
-          <EasyMode
-            pokemon={pokemonQuestions[round]}
-            topics={questionTopics}
-            round={round}
-            setRound={setRound}
-            answers={pokemonQuestions}
-            whichButton={whichButton}
-            setWhichButton={setWhichButton}
-          />
-        ) : (
-          <UserInputMode
-            pokemon={pokemonQuestions[round]}
-            topic={questionTopics[round]}
-            round={round}
-            setRound={setRound}
-            whichButton={whichButton}
-            setWhichButton={setWhichButton}
-          />
-        )}
+          {difficulty === "easy" ? (
+            <EasyMode
+              pokemon={pokemonQuestions[round]}
+              topics={questionTopics}
+              round={round}
+              setRound={setRound}
+              answers={pokemonQuestions}
+              whichButton={whichButton}
+              setWhichButton={setWhichButton}
+            />
+          ) : (
+            <UserInputMode
+              pokemon={pokemonQuestions[round]}
+              topic={questionTopics[round]}
+              round={round}
+              setRound={setRound}
+              whichButton={whichButton}
+              setWhichButton={setWhichButton}
+            />
+          )}
+        </main>
       </>
     );
   } else {
