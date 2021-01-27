@@ -36,7 +36,7 @@ export const finalPagePictureToDisplay = (difficulty, score, isHighScore) => {
   }
 };
 
-export const finalPageTextToDisplay = (difficulty, score) => {
+export const finalPageTextToDisplay = (difficulty, score, isHighScore) => {
   const easyText = (score) => {
     if (score < 4)
       return {
@@ -75,9 +75,26 @@ export const finalPageTextToDisplay = (difficulty, score) => {
       };
   };
 
+  const infiniteText = (isHighScore) => {
+    if (!isHighScore)
+      return {
+        exclamation: "Unlucky!",
+        text:
+          "Unfortunately, only those trainers who have become champions may leave their names.",
+      };
+    else if (isHighScore)
+      return {
+        exclamation: "Wow! A new champion!",
+        text:
+          "Come on, let's record your name as a trainer who triumphed over the Pokémon League!",
+      };
+  };
+
   if (difficulty === "easy") {
     return easyText(score);
   } else if (difficulty === "hard") {
     return hardText(score);
+  } else if (difficulty === "infinite") {
+    return infiniteText(isHighScore);
   }
 };

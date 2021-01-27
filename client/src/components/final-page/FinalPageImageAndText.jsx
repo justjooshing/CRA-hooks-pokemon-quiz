@@ -10,7 +10,6 @@ import("./FinalPageImageAndText.css");
 
 export default function FinalPageImageAndText({ score, isHighScore }) {
   const difficulty = useSelector((state) => state.difficulty);
-  const standard = difficulty === "easy" || difficulty === "hard";
 
   return (
     <section>
@@ -25,18 +24,14 @@ export default function FinalPageImageAndText({ score, isHighScore }) {
           }
         />
       </div>
-      <>
-        {standard && (
-          <>
-            <p className="final_page_text_paragraph">
-              {finalPageTextToDisplay(difficulty, score).exclamation}
-            </p>
-            <p className="final_page_text_paragraph">
-              {finalPageTextToDisplay(difficulty, score).text}
-            </p>
-          </>
-        )}
-      </>
+      <div>
+        <p className="final_page_text_paragraph">
+          {finalPageTextToDisplay(difficulty, score, isHighScore).exclamation}
+        </p>
+        <p className="final_page_text_paragraph">
+          {finalPageTextToDisplay(difficulty, score, isHighScore).text}
+        </p>
+      </div>
     </section>
   );
 }
