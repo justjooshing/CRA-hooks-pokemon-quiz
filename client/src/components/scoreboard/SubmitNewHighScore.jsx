@@ -11,8 +11,8 @@ export default function SubmitScore({ updateName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = Object.values(inputLetters).reduce((res, value) =>
-      res.concat(value).toUpperCase()
+    const name = Object.values(inputLetters).reduce((result, value) =>
+      result.concat(value).toUpperCase()
     );
     const regex = /\w{3}/;
     const check = regex.test(name);
