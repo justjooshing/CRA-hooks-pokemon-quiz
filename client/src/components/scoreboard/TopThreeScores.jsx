@@ -8,7 +8,7 @@ export default function TopThreeScores({ allScores, updateAllScores }) {
   const getData = async () => {
     const response = await fetch("/api/names");
     const body = await response.json();
-    updateAllScores(body.scores);
+    updateAllScores(body);
   };
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function TopThreeScores({ allScores, updateAllScores }) {
             return (
               <li
                 className="leaderboard__scores-list-items"
-                key={`${eachScore.id}`}
+                key={`${eachScore._id}`}
               >
                 <IndividualScore
                   ranking={index + 1}
