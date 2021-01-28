@@ -78,15 +78,13 @@ export const finalPageTextToDisplay = (difficulty, score, isHighScore) => {
   const infiniteText = (isHighScore) => {
     if (!isHighScore)
       return {
-        exclamation: "Unlucky!",
-        text:
-          "Unfortunately, only those trainers who have become champions may leave their names.",
+        exclamation: "Keep Training!",
+        text: "You didn't beat the Victory Road champions this time.",
       };
     else if (isHighScore)
       return {
-        exclamation: "Wow! A new champion!",
-        text:
-          "Come on, let's record your name as a trainer who triumphed over the Pokémon League!",
+        exclamation: "Wow!",
+        text: "We have a new champion!!",
       };
   };
 
