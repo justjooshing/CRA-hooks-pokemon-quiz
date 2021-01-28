@@ -159,8 +159,7 @@ export const generatePossibleAnswers = async (answers, topics) => {
 export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
   if (holdTempAnswer === "farfetch'd") {
     holdTempAnswer = "farfetchd";
-  }
-  if (holdTempAnswer === "Mr Mime.") {
+  } else if (holdTempAnswer === "Mr Mime.") {
     holdTempAnswer = "Mr Mime";
   }
   if (holdTempAnswer === correctAnswer) {
