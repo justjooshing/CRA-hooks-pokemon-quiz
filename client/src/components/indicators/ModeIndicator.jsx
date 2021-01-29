@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
+
+import { capitaliseFirstLetter } from "../../functions/quizFunctions";
+
 import "./ModeIndicator.css";
 
 export default function ModeIndicator() {
   const difficulty = useSelector((state) => state.difficulty);
-
-  return <header className="mode_indicator">{difficulty}</header>;
+  let capDifficulty = capitaliseFirstLetter(difficulty);
+  return <header className="mode_indicator">{capDifficulty}</header>;
 }
