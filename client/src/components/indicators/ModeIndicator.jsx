@@ -4,5 +4,5 @@ import "./ModeIndicator.css";
 export default function ModeIndicator() {
   const difficulty = useSelector((state) => state.difficulty);
 
-  return <header className="mode_indicator">{difficulty.toUpperCase()}</header>;
+  return <header className="mode_indicator">{difficulty}</header>;
 }
