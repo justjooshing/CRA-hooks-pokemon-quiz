@@ -23,7 +23,7 @@ export default function SubmitScore({ updateName }) {
     const name = Object.values(inputLetters).reduce((result, value) =>
       result.concat(value).toUpperCase()
     );
-    const regex = /\[a-Z]{3}/;
+    const regex = /[A-z]{3}/;
     const check = regex.test(name);
     if (check) {
       e.target.reset();
