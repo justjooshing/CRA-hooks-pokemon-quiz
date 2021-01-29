@@ -2,6 +2,7 @@ require("dotenv").config();
 const { connect, connection } = require("mongoose");
 
 const uri = process.env.MONGO_URI;
+console.log(uri);
 
 connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
