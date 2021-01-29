@@ -1,11 +1,10 @@
 .leaderboard__scores-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
   list-style: none;
+  padding: 0em 3em;
 }
 
 .leaderboard__scores-list-items {
   padding: 0.5em;
-  width: 20em;
 }
