@@ -1,12 +1,15 @@
-import headerTitleUltimate from "../../../images/heading_breakdown/Ultimate.png";
-import headerTitlePokemon from "../../../images/heading_breakdown/Pokemon.png";
-import headerTitleQuiz from "../../../images/heading_breakdown/Quiz.png";
+import AllScores from "../AllScores";
+
+import headerTitleUltimate from "../../../images/intro_page/heading_breakdown/Ultimate.png";
+import headerTitlePokemon from "../../../images/intro_page/heading_breakdown/Pokemon.png";
+import headerTitleQuiz from "../../../images/intro_page/heading_breakdown/Quiz.png";
 
 import "./Heading.css";
 
 export default function Heading() {
   return (
     <section className="heading_wrapper">
+      <AllScores />
       <img
         className="heading_title_images"
         src={headerTitleUltimate}
