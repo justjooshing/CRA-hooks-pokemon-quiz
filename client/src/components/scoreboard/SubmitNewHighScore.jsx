@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import("./SubmitNewHighScore.css");
 
@@ -8,17 +8,28 @@ export default function SubmitScore({ updateName }) {
     letter_1: "",
     letter_2: "",
   });
+  const [showError, updateShowError] = useState();
+
+  useEffect(() => {
+    if (showError) {
+      setTimeout(() => {
+        updateShowError(false);
+      }, 1000);
+    }
+  }, [showError]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = Object.values(inputLetters).reduce((result, value) =>
       result.concat(value).toUpperCase()
     );
-    const regex = /\w{3}/;
+    const regex = /\[a-Z]{3}/;
     const check = regex.test(name);
     if (check) {
       e.target.reset();
       updateName(name);
+    } else {
+      updateShowError(true);
     }
   };
 
@@ -50,6 +61,7 @@ export default function SubmitScore({ updateName }) {
             />
           );
         })}
+        {showError && <p>Please only submit letters</p>}
         <div className="high_score__button-wrapper">
           <button type="submit" className="high_score__button">
             <span className="high_score__button-text">Update</span>
