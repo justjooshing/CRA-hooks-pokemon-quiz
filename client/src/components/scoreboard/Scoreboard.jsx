@@ -1,27 +1,33 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import SubmitNewHighScore from "./SubmitNewHighScore";
 import TopThreeScores from "./TopThreeScores";
 
+import { updateHighScores } from "../../actions";
+
 import("./Scoreboard.css");
 
 export default function Scoreboard({ updateIsHighScore }) {
-  const [allScores, updateAllScores] = useState();
+  const dispatch = useDispatch();
+
   const [name, updateName] = useState("");
   const [newScoreAdded, updateNewScoreAdded] = useState(false);
+
+  const high_scores = useSelector((state) => state.high_scores);
   const score = useSelector((state) => state.score);
   const difficulty = useSelector((state) => state.difficulty);
 
   const newHighScore = (newScore) => {
-    const result = allScores.some(({ score }) => newScore > score);
+    const result = high_scores.some(({ score }) => newScore > score);
     if (result) {
       updateIsHighScore(true);
     }
     return result;
   };
 
-  const ableToAddNewScore = !newScoreAdded && allScores && newHighScore(score);
+  const ableToAddNewScore =
+    !newScoreAdded && high_scores && newHighScore(score);
 
   //API REQUESTS
   const postNewScore = {
@@ -34,8 +40,8 @@ export default function Scoreboard({ updateIsHighScore }) {
 
   const postData = async () => {
     const response = await fetch("/api/names", postNewScore);
-    const body = await response.text();
-    updateAllScores(body.scores);
+    const body = await response.json();
+    dispatch(updateHighScores(body));
   };
 
   const steadyPostData = useCallback(postData, [postData]);
@@ -55,7 +61,7 @@ export default function Scoreboard({ updateIsHighScore }) {
         <SubmitNewHighScore postData={postData} updateName={updateName} />
       )}
       <h2 className="leaderboard_heading">Current Leaderboard</h2>
-      <TopThreeScores allScores={allScores} updateAllScores={updateAllScores} />
+      <TopThreeScores />
     </section>
   );
 }

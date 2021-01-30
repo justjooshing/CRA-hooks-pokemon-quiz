@@ -1,26 +1,34 @@
 import { useEffect } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+
+import { updateHighScores } from "../../actions";
+
 import IndividualScore from "./IndividualScore";
 
 import("./TopThreeScores.css");
 
-export default function TopThreeScores({ allScores, updateAllScores }) {
+export default function TopThreeScores() {
+  const dispatch = useDispatch();
+
+  const high_scores = useSelector((state) => state.high_scores);
+
   const getData = async () => {
     const response = await fetch("/api/names");
     const body = await response.json();
-    updateAllScores(body);
+    dispatch(updateHighScores(body));
   };
 
   useEffect(() => {
-    if (!allScores) {
+    if (!high_scores) {
       getData();
     }
   });
 
   return (
     <ul className="leaderboard__scores-list">
-      {allScores
-        ? allScores.map((eachScore, index) => {
+      {high_scores
+        ? high_scores.map((eachScore, index) => {
             return (
               <li
                 className="leaderboard__scores-list-items"

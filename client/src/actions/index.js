@@ -3,6 +3,7 @@ import {
   SET_DIFFICULTY,
   RESET_GAME,
   SET_PAGE,
+  UPDATE_HIGH_SCORES,
 } from "../constants/action-types";
 
 export const setDifficulty = (value) => ({
@@ -21,4 +22,9 @@ export const setScore = () => ({
 
 export const resetGame = () => ({
   type: RESET_GAME,
+});
+
+export const updateHighScores = (array) => ({
+  type: UPDATE_HIGH_SCORES,
+  payload: array,
 });

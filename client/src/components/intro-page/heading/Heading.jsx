@@ -1,4 +1,4 @@
-import AllScores from "../AllScores";
+import AllScores from "./AllScores";
 
 import headerTitleUltimate from "../../../images/intro_page/heading_breakdown/Ultimate.png";
 import headerTitlePokemon from "../../../images/intro_page/heading_breakdown/Pokemon.png";

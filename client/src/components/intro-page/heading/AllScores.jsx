@@ -1,13 +1,12 @@
 import { useState, useLayoutEffect } from "react";
-import TopThreeScores from "../scoreboard/TopThreeScores";
+import TopThreeScores from "../../scoreboard/TopThreeScores";
 
-import medal from "../../images/intro_page/medal.png";
-import xImage from "../../images/intro_page/x-image.png";
+import medal from "../../../images/intro_page/medal.png";
+import xImage from "../../../images/intro_page/x-image.png";
 
 import "./AllScores.css";
 
 export default function AllScores() {
-  const [allScores, updateAllScores] = useState();
   const [showScores, updateShowScores] = useState(false);
   const [image, updateImage] = useState("");
 
@@ -36,10 +35,7 @@ export default function AllScores() {
       {showScores && (
         <section className="all_scores">
           <h3>Infinite Mode High Scores</h3>
-          <TopThreeScores
-            allScores={allScores}
-            updateAllScores={updateAllScores}
-          />
+          <TopThreeScores />
         </section>
       )}
     </>
