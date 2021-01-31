@@ -34,7 +34,10 @@ export default function EasyMode({
   });
 
   const isSelected = (answerOption) => {
-    setWhichButton("confirm");
+    // Allow answers to be changed
+    // setWhichButton("confirm");
+    // Don't allow answers to be changed
+    setWhichButton("next");
     setSelectedAnswer(answerOption);
   };
 
