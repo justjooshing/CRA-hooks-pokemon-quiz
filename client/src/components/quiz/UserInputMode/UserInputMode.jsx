@@ -66,7 +66,7 @@ export default function UserInputMode({
     }
   };
 
-  const addScore = () => {
+  const checkAnswer = () => {
     let holdTempAnswer = tempSubmittedAnswer.toLowerCase();
     const result = checkTempAnswer(holdTempAnswer, correctAnswer);
     if (result.valid) {
@@ -99,7 +99,7 @@ export default function UserInputMode({
       <ConfirmButton
         whichButton={whichButton}
         resetForNextQuestion={resetForNextQuestion}
-        addScore={addScore}
+        checkAnswer={checkAnswer}
         difficulty={difficulty}
       />
     </form>

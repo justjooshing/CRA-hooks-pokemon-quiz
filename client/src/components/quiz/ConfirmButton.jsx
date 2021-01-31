@@ -3,7 +3,7 @@ import "./ConfirmButton.css";
 export default function ConfirmButton({
   whichButton,
   resetForNextQuestion,
-  addScore,
+  checkAnswer,
   difficulty,
 }) {
   return (
@@ -12,10 +12,8 @@ export default function ConfirmButton({
         type="button"
         className="quiz_confirm_button"
         onClick={
-          difficulty === "easy"
-            ? addScore
-            : whichButton === "confirm"
-            ? addScore
+          difficulty === "easy" || whichButton === "confirm"
+            ? checkAnswer
             : resetForNextQuestion
         }
       >

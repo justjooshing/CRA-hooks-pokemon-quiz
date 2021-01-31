@@ -52,8 +52,7 @@ export default function EasyMode({
     setSelectedAnswer("");
   };
 
-  const addScore = () => {
-    console.log(`${selectedAnswer} === ${correctAnswer}?`);
+  const checkAnswer = () => {
     if (selectedAnswer === correctAnswer) {
       dispatch(setScore());
     }
@@ -80,7 +79,7 @@ export default function EasyMode({
         <ConfirmButton
           whichButton={whichButton}
           resetForNextQuestion={resetForNextQuestion}
-          addScore={addScore}
+          checkAnswer={checkAnswer}
           difficulty={difficulty}
         />
       </form>
