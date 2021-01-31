@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setScore, setPage } from "../../../actions";
 
 import AnswerButton from "./AnswerButton";
@@ -19,11 +19,12 @@ export default function EasyMode({
   whichButton,
   setWhichButton,
 }) {
+  const dispatch = useDispatch();
+
+  const difficulty = useSelector((state) => state.difficulty);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [answerOptions, setAnswerOptions] = useState(null);
   const correctAnswer = pokemon[topics[round]];
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!answerOptions) {
@@ -52,9 +53,11 @@ export default function EasyMode({
   };
 
   const addScore = () => {
+    console.log(`${selectedAnswer} === ${correctAnswer}?`);
     if (selectedAnswer === correctAnswer) {
       dispatch(setScore());
     }
+    resetForNextQuestion();
   };
 
   if (answerOptions) {
@@ -77,8 +80,8 @@ export default function EasyMode({
         <ConfirmButton
           whichButton={whichButton}
           resetForNextQuestion={resetForNextQuestion}
-          setWhichButton={setWhichButton}
           addScore={addScore}
+          difficulty={difficulty}
         />
       </form>
     );

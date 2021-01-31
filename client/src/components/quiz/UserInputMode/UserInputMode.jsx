@@ -75,6 +75,7 @@ export default function UserInputMode({
       setStillPlaying(false);
     }
     setSubmittedAnswer(result.holdTempAnswer);
+    setWhichButton("next");
   };
 
   return (
@@ -98,8 +99,8 @@ export default function UserInputMode({
       <ConfirmButton
         whichButton={whichButton}
         resetForNextQuestion={resetForNextQuestion}
-        setWhichButton={setWhichButton}
         addScore={addScore}
+        difficulty={difficulty}
       />
     </form>
   );
