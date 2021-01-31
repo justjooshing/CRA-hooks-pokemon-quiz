@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import IntroPage from "./components/intro-page/IntroPage";
@@ -8,6 +9,11 @@ import FinalPage from "./components/final-page/FinalPage";
 import "./App.css";
 
 export default function App() {
+  //onload/page change, scroll to top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   const page = useSelector((state) => state.page);
 
   switch (page) {
