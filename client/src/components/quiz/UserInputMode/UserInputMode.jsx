@@ -36,33 +36,23 @@ export default function UserInputMode({
       setWhichButton("next");
     } else if (tempSubmittedAnswer) {
       setWhichButton("confirm");
-    } else if (difficulty === "hard") {
+    } else {
       setWhichButton("skip");
     }
-  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton, difficulty]);
+  }, [submittedAnswer, tempSubmittedAnswer, setWhichButton]);
 
   const resetForNextQuestion = () => {
-    const runOthers = () => {
+    const continueInfiniteMode =
+      difficulty === "infinite" && stillPlaying && whichButton === "next";
+    const continueHardMode = difficulty === "hard" && round < 9;
+
+    if (continueInfiniteMode || continueHardMode) {
+      setRound(round + 1);
       setWhichButton("skip");
       setTempSubmittedAnswer("");
       setSubmittedAnswer("");
-    };
-
-    if (difficulty === "infinite") {
-      if (whichButton === "skip" || !stillPlaying) {
-        setStillPlaying(false);
-        dispatch(setPage("finished"));
-      } else {
-        setRound(round + 1);
-        runOthers();
-      }
-    } else if (difficulty === "hard") {
-      if (round < 9) {
-        setRound(round + 1);
-      } else {
-        dispatch(setPage("finished"));
-      }
-      runOthers();
+    } else {
+      dispatch(setPage("finished"));
     }
   };
 
