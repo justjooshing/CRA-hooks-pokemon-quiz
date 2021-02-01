@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import TopThreeScores from "../../scoreboard/TopThreeScores";
 
 import medal from "../../../images/intro_page/medal.png";
@@ -10,7 +10,7 @@ export default function AllScores() {
   const [showScores, updateShowScores] = useState(false);
   const [image, updateImage] = useState("");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     showScores ? updateImage(xImage) : updateImage(medal);
   }, [showScores]);
 
