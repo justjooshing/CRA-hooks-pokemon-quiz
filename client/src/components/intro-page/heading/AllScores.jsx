@@ -19,19 +19,17 @@ export default function AllScores() {
   };
   return (
     <>
-      {image && (
-        <button onClick={handleClick}>
-          <img
-            className={
-              showScores
-                ? "show_score_button show_score_button_x"
-                : "show_score_button show_score_button_medal"
-            }
-            src={image}
-            alt="high scores button"
-          />
-        </button>
-      )}
+      <button onClick={handleClick}>
+        <img
+          className={
+            showScores
+              ? "show_score_button show_score_button_x"
+              : "show_score_button show_score_button_medal"
+          }
+          src={image}
+          alt="high scores button"
+        />
+      </button>
       {showScores && (
         <section className="all_scores">
           <h3>Infinite Mode High Scores</h3>
