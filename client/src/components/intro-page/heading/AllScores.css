@@ -23,6 +23,8 @@
   border-radius: 10%;
   filter: invert() sepia() saturate(10000%) hue-rotate(333deg);
   cursor: pointer;
+  transform-origin: top;
+  animation: medalSwing 5s ease-in-out infinite;
 }
 
 .show_score_button_x {
@@ -32,9 +34,20 @@
   right: 0.7em;
 }
 
-/* 
-@media (min-width: 1200px) {
-  .show_score_button {
-    display: none;
+@keyframes medalSwing {
+  10% {
+    transform: rotate(15deg);
   }
-} */
+  20% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
