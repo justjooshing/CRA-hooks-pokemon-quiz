@@ -23,6 +23,8 @@ export default function Quiz() {
   const difficulty = useSelector((state) => state.difficulty);
   const allUpdated = pokemonQuestions && questionTopics;
 
+  const totalNumberOfPokemon = 151;
+
   //Set inital questions
   useEffect(() => {
     if (pokemonQuestions) {
@@ -30,7 +32,9 @@ export default function Quiz() {
     } else {
       (async () => {
         try {
-          setPokemonQuestions(await generatePokemonQuestions(10));
+          setPokemonQuestions(
+            await generatePokemonQuestions(10, totalNumberOfPokemon)
+          );
         } catch (error) {
           console.log(error.message);
         }
@@ -45,7 +49,11 @@ export default function Quiz() {
       (async () => {
         try {
           setPokemonQuestions(
-            await generatePokemonQuestions(numberOfRounds, pokemonQuestions)
+            await generatePokemonQuestions(
+              numberOfRounds,
+              totalNumberOfPokemon,
+              pokemonQuestions
+            )
           );
           setQuestionTopics(
             generateQuestionTopics(pokemonQuestions, questionTopics)
@@ -79,6 +87,7 @@ export default function Quiz() {
               answers={pokemonQuestions}
               whichButton={whichButton}
               setWhichButton={setWhichButton}
+              totalNumberOfPokemon={totalNumberOfPokemon}
             />
           ) : (
             <UserInputMode

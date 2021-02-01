@@ -18,6 +18,7 @@ export default function EasyMode({
   answers,
   whichButton,
   setWhichButton,
+  totalNumberOfPokemon,
 }) {
   const dispatch = useDispatch();
 
@@ -29,7 +30,9 @@ export default function EasyMode({
   useEffect(() => {
     if (!answerOptions) {
       (async () => {
-        setAnswerOptions(await generatePossibleAnswers(answers, topics));
+        setAnswerOptions(
+          await generatePossibleAnswers(answers, topics, totalNumberOfPokemon)
+        );
       })();
     }
   });

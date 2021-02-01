@@ -1,6 +1,15 @@
 import allTypes from "../components/pokemonTypes";
 
-const shuffle = (array) => {
+export const testFn = (array) => {
+  throw new Error("Shuffle array is empty");
+};
+
+export const shuffle = (array) => {
+  if (!Array.isArray(array) || !array.length) {
+    console.log("empty");
+    throw new Error("Shuffle array is empty");
+  }
+
   let currentIndex = array.length,
     temporaryValue,
     randomIndex;
@@ -19,10 +28,10 @@ const shuffle = (array) => {
   return array;
 };
 
-const grabAllPokemon = async () => {
+export const grabAllPokemon = async (totalNumberOfPokemon) => {
   try {
     const allPokemonFetch = await fetch(
-      "https://pokeapi.co/api/v2/pokemon/?limit=151"
+      `https://pokeapi.co/api/v2/pokemon/?limit=${totalNumberOfPokemon}`
     );
     if (!allPokemonFetch.ok) {
       const json = await allPokemonFetch.json();
@@ -60,11 +69,12 @@ export const generateQuestionTopics = (pokemonQuestions, answerTopics = []) => {
 
 export const generatePokemonQuestions = async (
   numberOfPokemon,
+  totalNumberOfPokemon,
   questionSet = []
 ) => {
   //grab n (10) number of pokemon from the API
   while (questionSet.length < numberOfPokemon) {
-    const number = Math.floor(Math.random() * 151) + 1;
+    const number = Math.floor(Math.random() * totalNumberOfPokemon) + 1;
     const pokemon = {};
     const nameUrl = `https://pokeapi.co/api/v2/pokemon/${number}`;
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
@@ -118,9 +128,13 @@ export const capitaliseFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const generatePossibleAnswers = async (answers, topics) => {
+export const generatePossibleAnswers = async (
+  answers,
+  topics,
+  totalNumberOfPokemon
+) => {
   try {
-    const pokemonNames = await grabAllPokemon();
+    const pokemonNames = await grabAllPokemon(totalNumberOfPokemon);
     if (answers) {
       const answerSets = [];
 
@@ -133,7 +147,8 @@ export const generatePossibleAnswers = async (answers, topics) => {
 
         //Randomly choose 3 of the wrong type answers
         while (possibleAnswers.length < 4) {
-          const numberOfOptions = topic === "type" ? 37 : 151;
+          const numberOfOptions =
+            topic === "type" ? allTypes.length : pokemonNames.length;
           const options = topic === "type" ? allTypes : pokemonNames;
           const num = Math.floor(Math.random() * numberOfOptions);
           if (!possibleAnswers.includes(options[num])) {
@@ -149,6 +164,10 @@ export const generatePossibleAnswers = async (answers, topics) => {
 
       answerSets.forEach((roundOptions) => shuffle(roundOptions));
       return answerSets;
+    } else {
+      throw new Error(
+        "No pokemon answers provided to build multiple choice questions from"
+      );
     }
   } catch (error) {
     console.log(error.message);
