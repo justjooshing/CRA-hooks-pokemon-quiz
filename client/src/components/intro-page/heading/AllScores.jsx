@@ -25,7 +25,7 @@ export default function AllScores() {
             className={
               showScores
                 ? "show_score_button show_score_button_x"
-                : "show_score_button"
+                : "show_score_button show_score_button_medal"
             }
             src={image}
             alt="high scores button"

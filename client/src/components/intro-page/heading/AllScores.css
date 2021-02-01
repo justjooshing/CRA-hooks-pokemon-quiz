@@ -23,10 +23,12 @@
   border-radius: 10%;
   filter: invert() sepia() saturate(10000%) hue-rotate(333deg);
   cursor: pointer;
+}
+
+.show_score_button_medal {
   transform-origin: top;
   animation: medalSwing 5s ease-in-out infinite;
 }
-
 .show_score_button_x {
   height: 3em;
   padding: 0;
