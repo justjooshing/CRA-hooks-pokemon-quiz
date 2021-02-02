@@ -33,7 +33,7 @@ export default function Quiz() {
       (async () => {
         try {
           setPokemonQuestions(
-            await generatePokemonQuestions(10, totalNumberOfPokemon)
+            await generatePokemonQuestions(numberOfRounds, totalNumberOfPokemon)
           );
         } catch (error) {
           console.log(error.message);
