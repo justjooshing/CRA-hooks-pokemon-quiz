@@ -21,10 +21,11 @@ export default function Quiz() {
   const [whichButton, setWhichButton] = useState("skip");
 
   const difficulty = useSelector((state) => state.difficulty);
+  const pokemonGeneration = useSelector((state) => state.pokemon_generation);
   const allUpdated = pokemonQuestions && questionTopics;
 
   const slider = true;
-  const generation = 1;
+  const generation = pokemonGeneration;
   const offsetPerGen = [0, 151, 251, 386, 493, 649, 721, 809];
   const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
   const totalNumberOfPokemon = slider
@@ -65,7 +66,7 @@ export default function Quiz() {
             generateQuestionTopics(pokemonQuestions, questionTopics)
           );
         } catch (error) {
-          console.errer(error.message);
+          console.error(error.message);
         }
       })();
     }
