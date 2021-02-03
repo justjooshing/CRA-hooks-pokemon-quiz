@@ -23,7 +23,13 @@ export default function Quiz() {
   const difficulty = useSelector((state) => state.difficulty);
   const allUpdated = pokemonQuestions && questionTopics;
 
-  const totalNumberOfPokemon = 151;
+  const slider = true;
+  const generation = 1;
+  const offsetPerGen = [0, 151, 251, 386, 493, 649, 721, 809];
+  const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
+  const totalNumberOfPokemon = slider
+    ? offsetPerGen[generation]
+    : pokePerGen[generation - 1];
 
   //Set inital questions
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function Quiz() {
             await generatePokemonQuestions(numberOfRounds, totalNumberOfPokemon)
           );
         } catch (error) {
-          console.log(error.message);
+          console.error(error.message);
         }
       })();
     }
@@ -59,7 +65,7 @@ export default function Quiz() {
             generateQuestionTopics(pokemonQuestions, questionTopics)
           );
         } catch (error) {
-          console.log(error.message);
+          console.errer(error.message);
         }
       })();
     }
