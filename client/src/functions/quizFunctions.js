@@ -112,79 +112,25 @@ export const generatePokemonQuestions = async (
       pokemon.name = singlePokemonJSON.name;
 
       //remove hyphens and tags from pokemon names
-      if (pokemon.name.includes("nidoran")) {
-        pokemon.name = "nidoran";
-      } else if (pokemon.name === "mr-mime") {
-        pokemon.name = "mr mime";
-      } else if (pokemon.name === "mime-jr") {
-        pokemon.name = "mime jr";
-      } else if (pokemon.name === "deoxys-normal") {
-        pokemon.name = "deoxys";
-      } else if (pokemon.name === "wormadam-plant") {
-        pokemon.name = "wormadam";
-      } else if (pokemon.name.includes("basculin")) {
-        pokemon.name = "basculin";
-      } else if (pokemon.name === "porygon-z") {
-        pokemon.name = "porygon z";
-      } else if (pokemon.name === "giratina-altered") {
-        pokemon.name = "giratina";
-      } else if (pokemon.name === "shaymin-altered") {
-        pokemon.name = "shaymin";
-      } else if (pokemon.name === "darmanitan-standard") {
-        pokemon.name = "darmanitan";
-      } else if (pokemon.name === "tornadus-incarnate") {
-        pokemon.name = "tornadus";
-      } else if (pokemon.name === "thundurus-incarnate") {
-        pokemon.name = "thundurus";
-      } else if (pokemon.name === "landorus-incarnate") {
-        pokemon.name = "landorus";
-      } else if (pokemon.name === "keldeo-ordinary") {
-        pokemon.name = "keldeo";
-      } else if (pokemon.name === "meloetta-aria") {
-        pokemon.name = "meloetta";
-      } else if (pokemon.name === "meowstic-male") {
-        pokemon.name = "meowstic";
-      } else if (pokemon.name === "aegislash-shield") {
-        pokemon.name = "aegislash";
-      } else if (pokemon.name === "pumpkaboo-average") {
-        pokemon.name = "pumpkaboo";
-      } else if (pokemon.name === "gourgeist-average") {
-        pokemon.name = "gourgeist";
-      } else if (pokemon.name === "oricorio-baile") {
-        pokemon.name = "oricorio";
-      } else if (pokemon.name === "lycanroc-midday") {
-        pokemon.name = "lycanroc";
-      } else if (pokemon.name === "wishiwashi-solo") {
-        pokemon.name = "wishiwashi";
-      } else if (pokemon.name === "minior-red-meteor") {
-        pokemon.name = "minior";
-      } else if (pokemon.name === "mimikyu-disguised") {
-        pokemon.name = "mimikyu";
-      } else if (pokemon.name === "mimikyu-disguised") {
-        pokemon.name = "mimikyu";
-      } else if (pokemon.name === "tapu-lele") {
-        pokemon.name = "tapu lele";
-      } else if (pokemon.name === "tapu-koko") {
-        pokemon.name = "tapu koko";
-      } else if (pokemon.name === "tapu-bulu") {
-        pokemon.name = "tapu bulu";
-      } else if (pokemon.name === "tapu-fini") {
-        pokemon.name = "tapu fini";
-      } else if (pokemon.name === "toxtricity-amped") {
-        pokemon.name = "toxtricity";
-      } else if (pokemon.name === "mr-rime") {
-        pokemon.name = "mr rime";
-      } else if (pokemon.name === "eiscue-ice") {
-        pokemon.name = "eiscue";
-      } else if (pokemon.name === "indeedee-male") {
-        pokemon.name = "indeedee";
-      } else if (pokemon.name === "zacian-hero") {
-        pokemon.name = "zacian";
-      } else if (pokemon.name === "zamazenta-hero") {
-        pokemon.name = "zamazenta";
-      } else if (pokemon.name === "urshifu-single-strike") {
-        pokemon.name = "urshifu";
-      }
+      const fixAPIName = (name) => {
+        const allowed = [
+          "mr-mime",
+          "mime-jr",
+          "mr-rime",
+          "porygon-z",
+          "tapu-lele",
+          "tapu-koko",
+          "tapu-bulu",
+          "tapu-fini",
+        ];
+        if (allowed.some((allowedName) => allowedName === name)) {
+          return name.split("-").join(" ");
+        } else {
+          return name.split("-")[0];
+        }
+      };
+
+      pokemon.name = fixAPIName(pokemon.name);
 
       //Grab, assign and join type
       pokemon.type = [];
