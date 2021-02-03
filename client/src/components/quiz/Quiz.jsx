@@ -70,7 +70,7 @@ export default function Quiz() {
         }
       })();
     }
-  }, [round, setNumberOfRounds, difficulty]);
+  }, [numberOfRounds, setNumberOfRounds, difficulty]);
 
   //when round updates, scroll to top
   useEffect(() => {
