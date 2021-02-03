@@ -216,18 +216,18 @@ export const generatePossibleAnswers = async (
 
 export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
   //check for small errors and remove punctuation
-  if (holdTempAnswer === "farfetch'd") {
-    holdTempAnswer = "farfetchd";
-  } else if (holdTempAnswer === "mr mime.") {
-    holdTempAnswer = "mr mime";
-  } else if (holdTempAnswer === "mime jr.") {
-    holdTempAnswer = "mime jr";
-  } else if (holdTempAnswer === "porygon-z") {
+
+  const removePunctuation = (answer) => {
+    //regex to remove ' or . characters
+    return answer.replace(/'|\./g, "");
+  };
+
+  if (holdTempAnswer === "porygon-z") {
     holdTempAnswer = "porygon z";
-  } else if (holdTempAnswer === "mr rime.") {
-    holdTempAnswer = "mr rime";
   } else if (holdTempAnswer === "porygon 2") {
     holdTempAnswer = "porygon2";
+  } else {
+    holdTempAnswer = removePunctuation(holdTempAnswer);
   }
 
   //check for reverse-typed types
