@@ -23,6 +23,24 @@ export const shuffle = (array) => {
   return array;
 };
 
+const fixAPIName = (name) => {
+  const allowed = [
+    "mr-mime",
+    "mime-jr",
+    "mr-rime",
+    "porygon-z",
+    "tapu-lele",
+    "tapu-koko",
+    "tapu-bulu",
+    "tapu-fini",
+  ];
+  if (allowed.some((allowedName) => allowedName === name)) {
+    return name.split("-").join(" ");
+  } else {
+    return name.split("-")[0];
+  }
+};
+
 export const grabAllPokemon = async (totalNumberOfPokemon) => {
   try {
     if (typeof totalNumberOfPokemon !== "number") {
@@ -36,8 +54,8 @@ export const grabAllPokemon = async (totalNumberOfPokemon) => {
       throw new Error(
         "input number more than total number of pokemon (currently 898)"
       );
-    } else if (totalNumberOfPokemon < 151) {
-      throw new Error("input number less than Gen 1 number of pokemon (151)");
+    } else if (!totalNumberOfPokemon) {
+      throw new Error("total number of pokemon not given or undefined");
     }
     const allPokemonFetch = await fetch(
       `https://pokeapi.co/api/v2/pokemon/?limit=${totalNumberOfPokemon}`
@@ -52,18 +70,12 @@ export const grabAllPokemon = async (totalNumberOfPokemon) => {
     const allPokemonNames = [];
     allPokemonJSON.results.forEach((pokemon) => {
       //remove the female and male tags from the nidoran names
-      if (pokemon.name.includes("nidoran")) {
-        pokemon.name = "nidoran";
-      }
-      //remove hyphen from mr mime
-      if (pokemon.name === "mr-mime") {
-        pokemon.name = "mr mime";
-      }
+      pokemon.name = fixAPIName(pokemon.name);
       allPokemonNames.push(pokemon.name);
     });
     return allPokemonNames;
   } catch (error) {
-    return error.message;
+    console.error(error.message);
   }
 };
 
@@ -91,8 +103,8 @@ export const generatePokemonQuestions = async (
       throw new Error(
         "input number more than total number of pokemon (currently 898)"
       );
-    } else if (totalNumberOfPokemon < 151) {
-      throw new Error("input number less than Gen 1 number of pokemon (151)");
+    } else if (!totalNumberOfPokemon) {
+      throw new Error("total number of pokemon not given or undefined");
     }
     //grab n (10) number of pokemon from the API
     while (questionSet.length < numberOfRounds) {
@@ -112,24 +124,6 @@ export const generatePokemonQuestions = async (
       pokemon.name = singlePokemonJSON.name;
 
       //remove hyphens and tags from pokemon names
-      const fixAPIName = (name) => {
-        const allowed = [
-          "mr-mime",
-          "mime-jr",
-          "mr-rime",
-          "porygon-z",
-          "tapu-lele",
-          "tapu-koko",
-          "tapu-bulu",
-          "tapu-fini",
-        ];
-        if (allowed.some((allowedName) => allowedName === name)) {
-          return name.split("-").join(" ");
-        } else {
-          return name.split("-")[0];
-        }
-      };
-
       pokemon.name = fixAPIName(pokemon.name);
 
       //Grab, assign and join type
@@ -151,7 +145,7 @@ export const generatePokemonQuestions = async (
     }
     return questionSet;
   } catch (error) {
-    return error.message;
+    console.error(error.message);
   }
 };
 
@@ -173,8 +167,8 @@ export const generatePossibleAnswers = async (
       throw new Error(
         "input number more than total number of pokemon (currently 898)"
       );
-    } else if (totalNumberOfPokemon < 151) {
-      throw new Error("input number less than Gen 1 number of pokemon (151)");
+    } else if (!totalNumberOfPokemon) {
+      throw new Error("total number of pokemon not given or undefined");
     }
     const pokemonNames = await grabAllPokemon(totalNumberOfPokemon);
     const answerSets = [];
@@ -210,13 +204,12 @@ export const generatePossibleAnswers = async (
     answerSets.forEach((roundOptions) => shuffle(roundOptions));
     return answerSets;
   } catch (error) {
-    return error.message;
+    console.error(error.message);
   }
 };
 
 export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
   //check for small errors and remove punctuation
-
   const removePunctuation = (answer) => {
     //regex to remove ' or . characters
     return answer.replace(/'|\./g, "");
