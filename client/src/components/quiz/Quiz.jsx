@@ -66,26 +66,26 @@ export default function Quiz() {
   //Add extra rounds for infinite mode
   useEffect(() => {
     if (difficulty === "infinite") {
-      if (round > 1) {
+      if (round > 0) {
         setNumberOfRounds(numberOfRounds + 1);
+        (async () => {
+          try {
+            setPokemonQuestions(
+              await generatePokemonQuestions(
+                numberOfRounds,
+                totalNumberOfPokemon,
+                offsetPokemon,
+                pokemonQuestions
+              )
+            );
+            setQuestionTopics(
+              generateQuestionTopics(pokemonQuestions, questionTopics)
+            );
+          } catch (error) {
+            console.error(error.message);
+          }
+        })();
       }
-      (async () => {
-        try {
-          setPokemonQuestions(
-            await generatePokemonQuestions(
-              numberOfRounds,
-              totalNumberOfPokemon,
-              offsetPokemon,
-              pokemonQuestions
-            )
-          );
-          setQuestionTopics(
-            generateQuestionTopics(pokemonQuestions, questionTopics)
-          );
-        } catch (error) {
-          console.error(error.message);
-        }
-      })();
     }
   }, [round, setNumberOfRounds, difficulty]);
 
