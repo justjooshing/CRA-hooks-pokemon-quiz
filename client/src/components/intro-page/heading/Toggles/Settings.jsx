@@ -1,4 +1,10 @@
-import Slider from "./Slider";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+import GenerationRadios from "./GenerationRadios";
+import GenerationSlider from "./GenerationSlider";
+
+import { genLabels } from "../../../../functions/introPageFunctions";
 
 import "./Settings.css";
 
@@ -8,6 +14,8 @@ export default function Settings({
   showSettings,
   showWhich,
 }) {
+  const { gen, method } = useSelector((state) => state.pokemon_generation);
+
   const dataTag = "settings";
   const myClassName =
     showWhich && showSettings
@@ -15,6 +23,12 @@ export default function Settings({
       : showWhich
       ? "hidden"
       : "show_score_button_cog";
+
+  const [currentGenLabel, setGenLabel] = useState();
+
+  useEffect(() => {
+    setGenLabel(genLabels(method, gen));
+  }, [gen, method]);
 
   return (
     <>
@@ -26,9 +40,11 @@ export default function Settings({
         />
       </button>
       {showSettings && (
-        <section>
+        <section className="settings_wrapper">
           <h3>Settings</h3>
-          <Slider />
+          <GenerationSlider />
+          <label className="genLabel">{currentGenLabel}</label>
+          <GenerationRadios />
         </section>
       )}
     </>

@@ -1,6 +1,11 @@
-export const genLabels = (gen) =>
+export const genLabels = (method, gen) =>
   ({
-    [gen]: `Generations 1 - ${gen}`,
-    1: "Generation 1",
-    2: "Generations 1 & 2",
-  }[gen]);
+    slider: {
+      [gen]: `Generations 1 - ${gen}`,
+      1: "Generation 1",
+      2: "Generations 1 & 2",
+    },
+    radio: {
+      [gen]: `Generation ${gen}`,
+    },
+  }[method][gen]);

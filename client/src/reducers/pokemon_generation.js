@@ -1,9 +1,13 @@
 import { SET_POKEMON_GENERATION } from "../constants/action-types";
 
-export default function pokemon_generation(state = 1, action) {
+export default function pokemon_generation(
+  state = { gen: 1, method: "slider" },
+  action
+) {
   switch (action.type) {
     case SET_POKEMON_GENERATION:
-      return action.payload;
+      const { gen, method } = action.payload;
+      return { gen, method };
     default:
       return state;
   }

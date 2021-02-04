@@ -20,17 +20,23 @@ export default function Quiz() {
   const [numberOfRounds, setNumberOfRounds] = useState(10);
   const [whichButton, setWhichButton] = useState("skip");
 
-  const difficulty = useSelector((state) => state.difficulty);
-  const pokemonGeneration = useSelector((state) => state.pokemon_generation);
   const allUpdated = pokemonQuestions && questionTopics;
 
-  const slider = true;
-  const generation = pokemonGeneration;
-  const offsetPerGen = [0, 151, 251, 386, 493, 649, 721, 809];
+  const difficulty = useSelector((state) => state.difficulty);
+
+  const pokemonGeneration = useSelector((state) => state.pokemon_generation);
+
+  const compoundingNumberOfPokemon = [0, 151, 251, 386, 493, 649, 721, 809];
   const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
-  const totalNumberOfPokemon = slider
-    ? offsetPerGen[generation]
-    : pokePerGen[generation - 1];
+  const totalNumberOfPokemon =
+    pokemonGeneration.method === "slider"
+      ? compoundingNumberOfPokemon[pokemonGeneration.gen]
+      : pokePerGen[pokemonGeneration.gen - 1];
+
+  const offsetPokemon =
+    pokemonGeneration.method === "slider"
+      ? 0
+      : compoundingNumberOfPokemon[pokemonGeneration.gen];
 
   //Set inital questions
   useEffect(() => {
@@ -40,7 +46,11 @@ export default function Quiz() {
       (async () => {
         try {
           setPokemonQuestions(
-            await generatePokemonQuestions(numberOfRounds, totalNumberOfPokemon)
+            await generatePokemonQuestions(
+              numberOfRounds,
+              totalNumberOfPokemon,
+              offsetPokemon
+            )
           );
         } catch (error) {
           console.error(error.message);
@@ -52,13 +62,16 @@ export default function Quiz() {
   //Add extra rounds for infinite mode
   useEffect(() => {
     if (difficulty === "infinite") {
-      setNumberOfRounds(numberOfRounds + 1);
+      if (round > 1) {
+        setNumberOfRounds(numberOfRounds + 1);
+      }
       (async () => {
         try {
           setPokemonQuestions(
             await generatePokemonQuestions(
               numberOfRounds,
               totalNumberOfPokemon,
+              offsetPokemon,
               pokemonQuestions
             )
           );
@@ -70,7 +83,7 @@ export default function Quiz() {
         }
       })();
     }
-  }, [numberOfRounds, setNumberOfRounds, difficulty]);
+  }, [round, setNumberOfRounds, difficulty]);
 
   //when round updates, scroll to top
   useEffect(() => {
@@ -95,6 +108,7 @@ export default function Quiz() {
               whichButton={whichButton}
               setWhichButton={setWhichButton}
               totalNumberOfPokemon={totalNumberOfPokemon}
+              offsetPokemon={offsetPokemon}
             />
           ) : (
             <UserInputMode

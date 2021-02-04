@@ -41,7 +41,7 @@ const fixAPIName = (name) => {
   }
 };
 
-export const grabAllPokemon = async (totalNumberOfPokemon) => {
+export const grabAllPokemon = async (totalNumberOfPokemon, offsetPokemon) => {
   try {
     if (typeof totalNumberOfPokemon !== "number") {
       switch (typeof totalNumberOfPokemon) {
@@ -58,7 +58,7 @@ export const grabAllPokemon = async (totalNumberOfPokemon) => {
       throw new Error("total number of pokemon not given or undefined");
     }
     const allPokemonFetch = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?limit=${totalNumberOfPokemon}`
+      `https://pokeapi.co/api/v2/pokemon/?limit=${totalNumberOfPokemon}&offset=${offsetPokemon}`
     );
     if (!allPokemonFetch.ok) {
       const json = await allPokemonFetch.json();
@@ -96,6 +96,7 @@ export const generateQuestionTopics = (pokemonQuestions, answerTopics = []) => {
 export const generatePokemonQuestions = async (
   numberOfRounds,
   totalNumberOfPokemon,
+  offsetPokemon,
   questionSet = []
 ) => {
   try {
@@ -110,8 +111,12 @@ export const generatePokemonQuestions = async (
     while (questionSet.length < numberOfRounds) {
       const number = Math.floor(Math.random() * totalNumberOfPokemon) + 1;
       const pokemon = {};
-      const nameUrl = `https://pokeapi.co/api/v2/pokemon/${number}`;
-      const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
+      const nameUrl = `https://pokeapi.co/api/v2/pokemon/${
+        number + offsetPokemon
+      }`;
+      const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+        number + offsetPokemon
+      }.png`;
 
       const singlePokemonResponse = await fetch(nameUrl);
       if (!singlePokemonResponse.ok) {
@@ -156,7 +161,8 @@ export const capitaliseFirstLetter = (string) => {
 export const generatePossibleAnswers = async (
   answers,
   topics,
-  totalNumberOfPokemon
+  totalNumberOfPokemon,
+  offsetPokemon
 ) => {
   try {
     if (!answers) {
@@ -170,7 +176,10 @@ export const generatePossibleAnswers = async (
     } else if (!totalNumberOfPokemon) {
       throw new Error("total number of pokemon not given or undefined");
     }
-    const pokemonNames = await grabAllPokemon(totalNumberOfPokemon);
+    const pokemonNames = await grabAllPokemon(
+      totalNumberOfPokemon,
+      offsetPokemon
+    );
     const answerSets = [];
 
     //Generate array of answers

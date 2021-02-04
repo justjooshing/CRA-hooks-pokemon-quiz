@@ -1,3 +1,16 @@
+.settings_wrapper {
+  display: flex;
+  flex-direction: column;
+  place-content: space-around;
+  margin: 0em 1em;
+  padding: 1em;
+  height: 100%;
+}
+
+.genLabel {
+  padding: 0em 0em 1em;
+}
+
 .show_settings_button {
   display: block;
   position: absolute;
@@ -8,10 +21,6 @@
   height: 2.4em;
   border-radius: 10%;
   cursor: pointer;
-}
-
-.show_score_button_cog {
-  animation: none;
 }
 
 .show_score_button_cog:hover {

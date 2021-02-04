@@ -30,7 +30,7 @@ export const updateHighScores = (array) => ({
   payload: array,
 });
 
-export const setPokemonGeneration = (val) => ({
+export const setPokemonGeneration = (obj) => ({
   type: SET_POKEMON_GENERATION,
-  payload: val,
+  payload: obj,
 });
