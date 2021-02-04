@@ -11,14 +11,18 @@ export default function Slider() {
   const pokemonGeneration = useSelector((state) => state.pokemon_generation);
   const [genLabel, setGenLabel] = useState("Gen 1");
 
+  const genLabels = {
+    1: "Generation 1",
+    2: "Generations 1 & 2",
+    3: "Generations 1 - 3",
+    4: "Generations 1 - 4",
+    5: "Generations 1 - 5",
+    6: "Generations 1 - 6",
+    7: "Generations 1 - 7",
+  };
+
   useEffect(() => {
-    const gen1 = pokemonGeneration === 1;
-    const gen2 = pokemonGeneration === 2;
-    gen1
-      ? setGenLabel(`Generation ${pokemonGeneration}`)
-      : gen2
-      ? setGenLabel(`Generations 1 & ${pokemonGeneration}`)
-      : setGenLabel(`Generations 1 - ${pokemonGeneration}`);
+    setGenLabel(genLabels[pokemonGeneration]);
   }, [pokemonGeneration]);
 
   const handleChange = (e) => {
