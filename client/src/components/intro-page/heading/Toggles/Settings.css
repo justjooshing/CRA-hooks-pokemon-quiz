@@ -10,6 +10,14 @@
   cursor: pointer;
 }
 
+.show_score_button_cog {
+  animation: none;
+}
+
+.show_score_button_cog:hover {
+  animation: cogRotate 5s ease-in-out infinite;
+}
+
 .show_settings_button_x {
   height: 3em;
   padding: 0;
@@ -19,4 +27,10 @@
 
 .hidden {
   display: none;
+}
+
+@keyframes cogRotate {
+  50% {
+    transform: rotate(90deg);
+  }
 }

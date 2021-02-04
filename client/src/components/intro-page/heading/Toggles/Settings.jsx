@@ -14,7 +14,7 @@ export default function Settings({
       ? "show_settings_button_x"
       : showWhich
       ? "hidden"
-      : "";
+      : "show_score_button_cog";
 
   return (
     <>
