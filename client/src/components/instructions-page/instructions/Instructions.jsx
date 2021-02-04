@@ -22,7 +22,7 @@ export default function Instructions() {
     ],
     infinite: [
       "There are an infinte number of questions.",
-      "Well... techincally 300.",
+      "Well... techincally less than that, but there's a lot.",
       "You will be shown a picture of a pokemon and a question.",
       "Read the question carefully.",
       "If you get one wrong, game over.",
