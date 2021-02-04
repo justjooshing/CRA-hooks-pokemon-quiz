@@ -11,7 +11,7 @@ export default function Slider() {
   const dispatch = useDispatch();
 
   const pokemonGeneration = useSelector((state) => state.pokemon_generation);
-  const [genLabel, setGenLabel] = useState("Gen 1");
+  const [currentGenLabel, setGenLabel] = useState("Gen 1");
 
   useEffect(() => {
     setGenLabel(genLabels[pokemonGeneration]);
@@ -38,8 +38,8 @@ export default function Slider() {
         aria-valuemax={7}
         aria-valuenow={pokemonGeneration}
       />
-      <label htmlFor="generationScale" value={genLabel}>
-        {genLabel}
+      <label htmlFor="generationScale" value={currentGenLabel}>
+        {currentGenLabel}
       </label>
     </div>
   );
