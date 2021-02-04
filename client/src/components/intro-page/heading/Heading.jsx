@@ -1,4 +1,4 @@
-import AllScores from "./AllScores";
+import Toggles from "./Toggles/Toggles";
 
 import headerTitleUltimate from "../../../images/intro_page/heading_breakdown/Ultimate.png";
 import headerTitlePokemon from "../../../images/intro_page/heading_breakdown/Pokemon.png";
@@ -9,7 +9,7 @@ import "./Heading.css";
 export default function Heading() {
   return (
     <section className="heading_wrapper">
-      <AllScores />
+      <Toggles />
       <img
         className="heading_title_images"
         src={headerTitleUltimate}

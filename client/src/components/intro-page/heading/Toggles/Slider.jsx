@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setPokemonGeneration } from "../../actions";
+import { setPokemonGeneration } from "../../../../actions";
 
 import "./Slider.css";
 
@@ -12,33 +12,16 @@ export default function Slider() {
   const [genLabel, setGenLabel] = useState("Gen 1");
 
   useEffect(() => {
-    switch (pokemonGeneration) {
-      case 1:
-        setGenLabel("Gen 1");
-        break;
-      case 2:
-        setGenLabel("Gen 1 & 2");
-        break;
-      case 3:
-        setGenLabel("Gen 1, 2 & 3");
-        break;
-      case 4:
-        setGenLabel("Gen 1, 2, 3 & 4");
-        break;
-      case 5:
-        setGenLabel("Gen 1, 2, 3, 4 & 5");
-        break;
-      case 6:
-        setGenLabel("Gen 1, 2, 3, 4, 5, & 6");
-        break;
-      case 7:
-        setGenLabel("Gen 1, 2, 3, 4, 5, 6 & 7");
-        break;
-      default:
-        console.log("test");
-        setGenLabel("Gen 1");
-        break;
-    }
+    const genLabels = [
+      "Generation 1",
+      "Generations 1 & 2",
+      "Generations 1 - 3",
+      "Generations 1 - 4",
+      "Generations 1 - 5",
+      "Generations 1 - 6",
+      "Generations 1 - 7",
+    ];
+    setGenLabel(genLabels[pokemonGeneration - 1]);
   }, [pokemonGeneration]);
 
   const handleChange = (e) => {
@@ -58,6 +41,9 @@ export default function Slider() {
         step={1}
         value={pokemonGeneration}
         onChange={handleChange}
+        aria-valuemin={1}
+        aria-valuemax={7}
+        aria-valuenow={pokemonGeneration}
       />
       <label htmlFor="generationScale" value={genLabel}>
         {genLabel}

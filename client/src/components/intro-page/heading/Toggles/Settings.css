@@ -1,0 +1,22 @@
+.show_settings_button {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 1em;
+  left: 1em;
+  padding: 0.2em;
+  height: 2.4em;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.show_settings_button_x {
+  height: 3em;
+  padding: 0;
+  top: 0.8em;
+  left: 0.8em;
+}
+
+.hidden {
+  display: none;
+}
