@@ -1,4 +1,4 @@
-import allTypes from "../components/pokemonTypes";
+import { pokemonTypes } from "../components/pokemonData";
 
 export const shuffle = (array) => {
   if (!Array.isArray(array) || !array.length) {
@@ -196,8 +196,8 @@ export const generatePossibleAnswers = async (
         //as an answer option in gen 1
         //I would need a map for pokemonNames.length = gen = types < x
         const numberOfOptions =
-          topic === "type" ? allTypes.length : pokemonNames.length;
-        const options = topic === "type" ? allTypes : pokemonNames;
+          topic === "type" ? pokemonTypes.length : pokemonNames.length;
+        const options = topic === "type" ? pokemonTypes : pokemonNames;
         const num = Math.floor(Math.random() * numberOfOptions);
         if (!possibleAnswers.includes(options[num])) {
           possibleAnswers.push(options[num]);

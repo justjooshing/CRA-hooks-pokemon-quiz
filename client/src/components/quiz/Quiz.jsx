@@ -7,6 +7,7 @@ import Question from "./Question";
 import EasyMode from "./EasyMode/EasyMode";
 import UserInputMode from "./UserInputMode/UserInputMode";
 import LoadingScreen from "./LoadingScreen";
+import { compoundingNumberOfPokemon, pokePerGen } from "../pokemonData";
 
 import {
   generatePokemonQuestions,
@@ -14,6 +15,9 @@ import {
 } from "../../functions/quizFunctions";
 
 export default function Quiz() {
+  const difficulty = useSelector((state) => state.difficulty);
+  const { gen, method } = useSelector((state) => state.pokemon_generation);
+
   const [pokemonQuestions, setPokemonQuestions] = useState(null);
   const [questionTopics, setQuestionTopics] = useState();
   const [round, setRound] = useState(0);
@@ -21,12 +25,6 @@ export default function Quiz() {
   const [whichButton, setWhichButton] = useState("skip");
 
   const allUpdated = pokemonQuestions && questionTopics;
-
-  const difficulty = useSelector((state) => state.difficulty);
-  const { gen, method } = useSelector((state) => state.pokemon_generation);
-
-  const compoundingNumberOfPokemon = [0, 151, 251, 386, 493, 649, 721, 809];
-  const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
 
   const setPokemonRange = {
     slider: {
