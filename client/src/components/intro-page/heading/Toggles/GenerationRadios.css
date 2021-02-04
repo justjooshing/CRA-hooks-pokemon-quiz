@@ -1,0 +1,13 @@
+.radio_wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  place-items: center;
+}
+
+.radio_button {
+  align-items: center;
+}
+
+.radio_label {
+  align-items: center;
+}

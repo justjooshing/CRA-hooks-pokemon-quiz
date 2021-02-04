@@ -23,20 +23,24 @@ export default function Quiz() {
   const allUpdated = pokemonQuestions && questionTopics;
 
   const difficulty = useSelector((state) => state.difficulty);
-
-  const pokemonGeneration = useSelector((state) => state.pokemon_generation);
+  const { gen, method } = useSelector((state) => state.pokemon_generation);
 
   const compoundingNumberOfPokemon = [0, 151, 251, 386, 493, 649, 721, 809];
   const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
-  const totalNumberOfPokemon =
-    pokemonGeneration.method === "slider"
-      ? compoundingNumberOfPokemon[pokemonGeneration.gen]
-      : pokePerGen[pokemonGeneration.gen - 1];
 
-  const offsetPokemon =
-    pokemonGeneration.method === "slider"
-      ? 0
-      : compoundingNumberOfPokemon[pokemonGeneration.gen];
+  const setPokemonRange = {
+    slider: {
+      totalNumberOfPokemon: compoundingNumberOfPokemon[gen],
+      offsetPokemon: 0,
+    },
+    radio: {
+      totalNumberOfPokemon: pokePerGen[gen - 1],
+      offsetPokemon: compoundingNumberOfPokemon[gen],
+    },
+  };
+
+  const totalNumberOfPokemon = setPokemonRange[method].totalNumberOfPokemon;
+  const offsetPokemon = setPokemonRange[method].offsetPokemon;
 
   //Set inital questions
   useEffect(() => {
