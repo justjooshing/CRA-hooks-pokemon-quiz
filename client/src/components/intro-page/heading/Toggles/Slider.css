@@ -5,11 +5,8 @@
 .sliderWrapper {
   display: flex;
   flex-direction: column;
-  text-align: center;
   margin: 0em 1em 1em;
   padding: 1em;
-  background-color: var(--poke-blue);
-  color: var(--poke-yellow);
 }
 
 input[type="range"]::-webkit-slider-runnable-track {

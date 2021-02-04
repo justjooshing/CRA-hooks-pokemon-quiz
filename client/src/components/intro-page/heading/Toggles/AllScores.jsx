@@ -26,7 +26,7 @@ export default function AllScores({
         />
       </button>
       {showScores && (
-        <section className="all_scores">
+        <section>
           <h3>Infinite Mode High Scores</h3>
           <TopThreeScores />
         </section>

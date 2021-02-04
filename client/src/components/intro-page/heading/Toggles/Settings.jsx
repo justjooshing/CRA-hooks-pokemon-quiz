@@ -26,7 +26,7 @@ export default function Settings({
         />
       </button>
       {showSettings && (
-        <section className="settings">
+        <section>
           <h3>Settings</h3>
           <Slider />
         </section>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setPokemonGeneration } from "../../../../actions";
 
-import { genLabels } from "./genLabels";
+import { genLabels } from "../../../../functions/introPageFunctions";
 
 import "./Slider.css";
 
@@ -11,10 +11,10 @@ export default function Slider() {
   const dispatch = useDispatch();
 
   const pokemonGeneration = useSelector((state) => state.pokemon_generation);
-  const [currentGenLabel, setGenLabel] = useState("Gen 1");
+  const [currentGenLabel, setGenLabel] = useState();
 
   useEffect(() => {
-    setGenLabel(genLabels[pokemonGeneration]);
+    setGenLabel(genLabels(pokemonGeneration));
   }, [pokemonGeneration]);
 
   const handleChange = (e) => {
