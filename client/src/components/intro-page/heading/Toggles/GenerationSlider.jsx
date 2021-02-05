@@ -17,7 +17,7 @@ export default function Slider() {
 
   return (
     <div className="sliderWrapper">
-      <label>Choose Generation</label>
+      <label>Gen Range:</label>
       <input
         type="range"
         className="generationScale"

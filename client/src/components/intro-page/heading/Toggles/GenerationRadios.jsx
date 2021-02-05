@@ -31,9 +31,12 @@ export default function GenerationRadios() {
   }
 
   return (
-    <div className="radio_wrapper">
-      {allRadios}
-      {allLabels}
-    </div>
+    <>
+      <label>Individual Gen:</label>
+      <div className="radio_wrapper">
+        {allRadios}
+        {allLabels}
+      </div>
+    </>
   );
 }

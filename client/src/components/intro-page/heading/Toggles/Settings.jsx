@@ -42,8 +42,8 @@ export default function Settings({
       {showSettings && (
         <section className="settings_wrapper">
           <h3>Settings</h3>
+          <h4 className="genLabel">{currentGenLabel}</h4>
           <GenerationSlider />
-          <label className="genLabel">{currentGenLabel}</label>
           <GenerationRadios />
         </section>
       )}

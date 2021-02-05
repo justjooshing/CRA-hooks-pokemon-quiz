@@ -8,7 +8,9 @@
 }
 
 .genLabel {
-  padding: 0em 0em 1em;
+  padding: 0.5em 0em;
+  color: var(--poke-yellow);
+  font-weight: normal;
 }
 
 .show_settings_button {
