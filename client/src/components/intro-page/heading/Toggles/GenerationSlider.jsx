@@ -23,12 +23,12 @@ export default function Slider() {
         className="generationScale"
         name="generationScale"
         min={1}
-        max={7}
+        max={8}
         step={1}
         value={gen}
         onChange={handleChange}
         aria-valuemin={1}
-        aria-valuemax={7}
+        aria-valuemax={8}
         aria-valuenow={gen}
       />
     </div>

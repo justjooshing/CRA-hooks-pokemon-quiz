@@ -1,6 +1,6 @@
 .radio_wrapper {
   display: grid;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(8, auto);
   place-items: center;
 }
 

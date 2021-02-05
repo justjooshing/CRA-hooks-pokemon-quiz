@@ -173,14 +173,13 @@ export const pokemonTypes = [
   "dark/fairy",
 ];
 
-export const compoundingNumberOfPokemon = [
-  0,
-  151,
-  251,
-  386,
-  493,
-  649,
-  721,
-  809,
-];
-export const pokePerGen = [151, 100, 135, 107, 156, 72, 88, 89];
+export const pokeApiQuery = {
+  1: { earlierGenPokemon: 0, pokePerGen: 151 },
+  2: { earlierGenPokemon: 151, pokePerGen: 100 },
+  3: { earlierGenPokemon: 251, pokePerGen: 135 },
+  4: { earlierGenPokemon: 386, pokePerGen: 107 },
+  5: { earlierGenPokemon: 493, pokePerGen: 156 },
+  6: { earlierGenPokemon: 649, pokePerGen: 72 },
+  7: { earlierGenPokemon: 721, pokePerGen: 88 },
+  8: { earlierGenPokemon: 809, pokePerGen: 89 },
+};

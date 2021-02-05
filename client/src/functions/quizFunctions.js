@@ -1,4 +1,4 @@
-import { pokemonTypes } from "../components/pokemonData";
+import { pokemonTypes, pokeApiQuery } from "../components/pokemonData";
 
 export const shuffle = (array) => {
   if (!Array.isArray(array) || !array.length) {
@@ -247,3 +247,16 @@ export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
     return { holdTempAnswer, valid: false };
   }
 };
+
+export const setPokemonRange = (method, gen) =>
+  ({
+    slider: {
+      totalNumberOfPokemon:
+        pokeApiQuery[gen].earlierGenPokemon + pokeApiQuery[gen].pokePerGen,
+      offsetPokemon: 0,
+    },
+    radio: {
+      totalNumberOfPokemon: pokeApiQuery[gen].pokePerGen,
+      offsetPokemon: pokeApiQuery[gen].earlierGenPokemon,
+    },
+  }[method]);

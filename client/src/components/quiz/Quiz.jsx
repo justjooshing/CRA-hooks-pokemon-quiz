@@ -7,11 +7,11 @@ import Question from "./Question";
 import EasyMode from "./EasyMode/EasyMode";
 import UserInputMode from "./UserInputMode/UserInputMode";
 import LoadingScreen from "./LoadingScreen";
-import { compoundingNumberOfPokemon, pokePerGen } from "../pokemonData";
 
 import {
   generatePokemonQuestions,
   generateQuestionTopics,
+  setPokemonRange,
 } from "../../functions/quizFunctions";
 
 export default function Quiz() {
@@ -24,21 +24,9 @@ export default function Quiz() {
   const [numberOfRounds, setNumberOfRounds] = useState(10);
   const [whichButton, setWhichButton] = useState("skip");
 
+  const { totalNumberOfPokemon, offsetPokemon } = setPokemonRange(method, gen);
+
   const allUpdated = pokemonQuestions && questionTopics;
-
-  const setPokemonRange = {
-    slider: {
-      totalNumberOfPokemon: compoundingNumberOfPokemon[gen],
-      offsetPokemon: 0,
-    },
-    radio: {
-      totalNumberOfPokemon: pokePerGen[gen - 1],
-      offsetPokemon: compoundingNumberOfPokemon[gen],
-    },
-  };
-
-  const totalNumberOfPokemon = setPokemonRange[method].totalNumberOfPokemon;
-  const offsetPokemon = setPokemonRange[method].offsetPokemon;
 
   //Set inital questions
   useEffect(() => {
