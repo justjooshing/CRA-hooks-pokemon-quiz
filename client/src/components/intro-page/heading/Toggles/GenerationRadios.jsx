@@ -19,7 +19,7 @@ export default function GenerationRadios() {
         className="radio_button"
         key={`input: ${value}`}
         onClick={() =>
-          dispatch(setPokemonGeneration({ gen: value, method: "radio" }))
+          dispatch(setPokemonGeneration({ gen: value, method: "exact" }))
         }
       />
     );

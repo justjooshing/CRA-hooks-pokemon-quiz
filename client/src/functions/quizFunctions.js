@@ -250,12 +250,12 @@ export const checkTempAnswer = (holdTempAnswer, correctAnswer) => {
 
 export const setPokemonRange = (method, gen) =>
   ({
-    slider: {
+    range: {
       totalNumberOfPokemon:
         pokeApiQuery[gen].earlierGenPokemon + pokeApiQuery[gen].pokePerGen,
       offsetPokemon: 0,
     },
-    radio: {
+    exact: {
       totalNumberOfPokemon: pokeApiQuery[gen].pokePerGen,
       offsetPokemon: pokeApiQuery[gen].earlierGenPokemon,
     },

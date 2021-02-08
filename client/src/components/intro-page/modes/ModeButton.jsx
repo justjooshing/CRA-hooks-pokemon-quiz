@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { setDifficulty, setPage } from "../../../actions";
+import { setDifficulty, setPage, setPokemonGeneration } from "../../../actions";
 
 export default function ModeButton({ button_text, difficulty }) {
   const dispatch = useDispatch();
@@ -8,6 +8,9 @@ export default function ModeButton({ button_text, difficulty }) {
   const handleClick = () => {
     dispatch(setDifficulty(difficulty));
     dispatch(setPage("instructions"));
+    if (difficulty === "infinite") {
+      dispatch(setPokemonGeneration({ gen: 8, method: "range" }));
+    }
   };
 
   return (

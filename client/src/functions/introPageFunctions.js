@@ -1,11 +1,11 @@
 export const genLabels = (method, gen) =>
   ({
-    slider: {
+    range: {
       [gen]: `Generations 1 - ${gen}`,
       1: "Generation 1",
       2: "Generations 1 & 2",
     },
-    radio: {
+    exact: {
       [gen]: `Generation ${gen}`,
     },
   }[method][gen]);

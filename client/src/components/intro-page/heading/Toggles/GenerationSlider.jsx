@@ -12,7 +12,7 @@ export default function Slider() {
 
   const handleChange = (e) => {
     const value = parseInt(e.target.value);
-    dispatch(setPokemonGeneration({ gen: value, method: "slider" }));
+    dispatch(setPokemonGeneration({ gen: value, method: "range" }));
   };
 
   return (
